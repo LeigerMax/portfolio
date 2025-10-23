@@ -28,7 +28,7 @@ export function ContactSection() {
     e.preventDefault();
     // Ici vous pourriez intégrer un service de formulaire comme Formspree, Netlify Forms, etc.
     console.log('Form submitted:', formData);
-    alert('Message envoyé! (Demo)');
+    alert(t.contact.form.successMessage);
   };
 
   const contactMethods = [
@@ -38,7 +38,7 @@ export function ContactSection() {
       value: contactInfo.email,
       href: `mailto:${contactInfo.email}`,
       color: 'cyan',
-      description: 'Réponse sous 24h'
+      description: t.contact.methods.emailDesc
     },
     {
       icon: Linkedin,
@@ -46,7 +46,7 @@ export function ContactSection() {
       value: 'Maxime Allemeersch',
       href: contactInfo.linkedin,
       color: 'blue',
-      description: 'Réseau professionnel'
+      description: t.contact.methods.linkedinDesc
     },
     {
       icon: Github,
@@ -138,7 +138,7 @@ export function ContactSection() {
           >
             <h3 className="text-3xl font-bold text-purple-400 mb-8 flex items-center space-x-3">
               <MessageCircle size={32} />
-              <span>Restons connectés</span>
+              <span>{t.contact.stayConnected}</span>
             </h3>
 
             <div className="space-y-6">
@@ -233,7 +233,7 @@ export function ContactSection() {
                       transition={{ delay: 0.6 }}
                     >
                       <label className="block text-sm font-medium text-pink-400 mb-2">
-                        Nom *
+                        {t.contact.form.name} *
                       </label>
                       <input
                         type="text"
@@ -252,7 +252,7 @@ export function ContactSection() {
                       transition={{ delay: 0.7 }}
                     >
                       <label className="block text-sm font-medium text-pink-400 mb-2">
-                        Email *
+                        {t.contact.form.email} *
                       </label>
                       <input
                         type="email"
@@ -272,7 +272,7 @@ export function ContactSection() {
                     transition={{ delay: 0.8 }}
                   >
                     <label className="block text-sm font-medium text-pink-400 mb-2">
-                      Sujet *
+                      {t.contact.form.subject} *
                     </label>
                     <input
                       type="text"
@@ -291,7 +291,7 @@ export function ContactSection() {
                     transition={{ delay: 0.9 }}
                   >
                     <label className="block text-sm font-medium text-pink-400 mb-2">
-                      Message *
+                      {t.contact.form.message} *
                     </label>
                     <textarea
                       name="message"
@@ -300,7 +300,7 @@ export function ContactSection() {
                       required
                       rows={6}
                       className="w-full px-4 py-3 bg-black/20 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-pink-400 focus:outline-none focus:ring-2 focus:ring-pink-400/20 transition-all duration-300 resize-none"
-                      placeholder="Décrivez votre projet ou posez votre question..."
+                      placeholder={t.contact.form.placeholder}
                     />
                   </motion.div>
 
@@ -316,7 +316,7 @@ export function ContactSection() {
                       className="w-full"
                     >
                       <Send size={20} className="mr-2" />
-                      Envoyer le message
+                      {t.contact.form.send}
                     </Button>
                   </motion.div>
                 </form>

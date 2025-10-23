@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 
-export type SectionId = 'hero' | 'about' | 'projects' | 'experience' | 'contact';
+export type SectionId = 'hero' | 'about' | 'projects' | 'experience' | 'certificates' | 'contact';
 
 interface SectionConfig {
   id: SectionId;
@@ -46,6 +46,14 @@ const sectionConfigs: Record<SectionId, SectionConfig> = {
     offsetY: 30,
     backgroundColor: 'from-orange-900 via-red-900 to-pink-900'
   },
+  certificates: {
+    id: 'certificates',
+    zoomLevel: 1.08,
+    rotation: 0.05,
+    offsetX: -20,
+    offsetY: 25,
+    backgroundColor: 'from-yellow-900 via-orange-900 to-amber-900'
+  },
   contact: {
     id: 'contact',
     zoomLevel: 1.1,
@@ -63,7 +71,7 @@ export function useNaturalScroll() {
 
   // Détecter quelle section est actuellement visible
   const updateCurrentSection = useCallback(() => {
-    const sections = ['hero', 'about', 'projects', 'experience', 'contact'] as SectionId[];
+    const sections = ['hero', 'about', 'projects', 'experience', 'certificates', 'contact'] as SectionId[];
     const windowHeight = window.innerHeight;
     const scrollTop = window.scrollY;
 

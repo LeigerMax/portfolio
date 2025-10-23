@@ -23,6 +23,7 @@ export function Navigation({ className }: NavigationProps) {
     { id: 'about', label: t.nav.about, icon: '👨‍💻' },
     { id: 'projects', label: t.nav.projects, icon: '🎮' },
     { id: 'experience', label: t.nav.experience, icon: '📚' },
+    { id: 'certificates', label: t.nav.certificates || 'Certificats', icon: '🏆' },
     { id: 'contact', label: t.nav.contact, icon: '📞' }
   ];
 
@@ -156,7 +157,7 @@ export function Navigation({ className }: NavigationProps) {
                   whileTap={{ scale: 0.95 }}
                 >
                   <Languages size={20} />
-                  <span>{language === 'fr' ? 'Français' : 'English'}</span>
+                  <span>{language === 'fr' ? t.common.french : t.common.english}</span>
                 </motion.button>
               </motion.div>
             </motion.div>

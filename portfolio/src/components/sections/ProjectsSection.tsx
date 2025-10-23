@@ -1,16 +1,18 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useTranslation } from '@/hooks/useLanguage';
+import { useTranslation, useLanguage } from '@/hooks/useLanguage';
 import { useNaturalScroll } from '@/hooks/useNaturalScroll';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { projects } from '@/data/portfolio';
+import { getTranslatedContent } from '@/data/translatedContent';
 import { ExternalLink, Github, Star } from 'lucide-react';
 import Image from 'next/image';
 
 export function ProjectsSection() {
   const t = useTranslation();
+  const { language } = useLanguage();
   const { navigateToSection } = useNaturalScroll();
 
   return (
@@ -81,7 +83,7 @@ export function ProjectsSection() {
             </span>
           </h2>
           <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-            Une sélection de mes créations digitales, alliant innovation technique et design rétro-futuriste
+            {t.projects.subtitle}
           </p>
         </motion.div>
 
@@ -94,7 +96,7 @@ export function ProjectsSection() {
         >
           <h3 className="text-2xl font-bold text-cyan-400 mb-6 flex items-center space-x-2">
             <Star className="text-yellow-400" size={24} />
-            <span>Projets en vedette</span>
+            <span>{t.projects.featured}</span>
           </h3>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -145,7 +147,7 @@ export function ProjectsSection() {
                   
                   <CardContent>
                     <CardDescription className="mb-4">
-                      {project.description}
+                      {getTranslatedContent('projects', project.id, language, 'description')}
                     </CardDescription>
                     
                     {/* Technologies */}
@@ -201,13 +203,13 @@ export function ProjectsSection() {
                         {project.liveUrl && (
                           <span className="flex items-center text-green-400">
                             <ExternalLink size={12} className="mr-1" />
-                            Démonstration en ligne
+                            {t.projects.liveIndicator}
                           </span>
                         )}
                         {project.githubUrl && (
                           <span className="flex items-center text-cyan-400">
                             <Github size={12} className="mr-1" />
-                            Code source disponible
+                            {t.projects.openSourceIndicator}
                           </span>
                         )}
                       </div>
@@ -225,7 +227,7 @@ export function ProjectsSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
         >
-          <h3 className="text-2xl font-bold text-pink-400 mb-6">Autres projets</h3>
+          <h3 className="text-2xl font-bold text-pink-400 mb-6">{t.projects.other}</h3>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {projects.filter(p => !p.featured).map((project, index) => (
@@ -244,7 +246,7 @@ export function ProjectsSection() {
                   
                   <CardContent>
                     <CardDescription className="mb-4 text-sm">
-                      {project.description}
+                      {getTranslatedContent('projects', project.id, language, 'description')}
                     </CardDescription>
                     
                     {/* Technologies (version compacte) */}
@@ -278,7 +280,7 @@ export function ProjectsSection() {
                             onClick={() => window.open(project.liveUrl, '_blank', 'noopener,noreferrer')}
                           >
                             <ExternalLink size={14} className="mr-1" />
-                            Demo
+                            {t.projects.demoText}
                           </Button>
                         )}
                         
@@ -291,7 +293,7 @@ export function ProjectsSection() {
                             onClick={() => window.open(project.githubUrl, '_blank', 'noopener,noreferrer')}
                           >
                             <Github size={14} className="mr-1" />
-                            Code
+                            {t.projects.codeText}
                           </Button>
                         )}
                       </div>
@@ -327,14 +329,14 @@ export function ProjectsSection() {
           className="text-center mt-16"
         >
           <p className="text-gray-400 mb-6">
-            Vous avez un projet en tête ? Discutons-en !
+            {t.projects.ctaText}
           </p>
           <Button 
             glowColor="purple" 
             size="lg"
             onClick={() => navigateToSection('contact')}
           >
-            Commencer un projet
+            {t.projects.ctaSubtext}
           </Button>
         </motion.div>
       </div>

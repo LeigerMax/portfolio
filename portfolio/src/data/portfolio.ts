@@ -1,4 +1,4 @@
-import { Project, Experience, Education, ContactInfo, PersonalInfo } from '@/types';
+import { Project, Experience, Education, ContactInfo, PersonalInfo, Certificate } from '@/types';
 
 export const personalInfo: PersonalInfo = {
   name: "Maxime Allemeersch",
@@ -143,6 +143,38 @@ export const education: Education[] = [
     startDate: "2012-09",
     endDate: "2018-06",
     description: "Etudes secondaires techniques axées sur l'informatique, incluant la programmation.",
+  }
+];
+
+export const certificates: Certificate[] = [
+  {
+    id: "redhat-openshift",
+    title: "Red Hat OpenShift I: Containers & Kubernetes (DO180)",
+    issuer: "Red Hat",
+    issueDate: "2021-04",
+    description: "Formation approfondie sur les conteneurs et l'orchestration avec Kubernetes sur la plateforme OpenShift."
+  },
+  {
+    id: "css-initiation",
+    title: "Initiation aux feuilles de style en cascade (CSS)",
+    issuer: "Technofutur TIC",
+    issueDate: "2019-04",
+    description: "Formation complète sur les bases du CSS et les techniques de mise en page web moderne."
+  },
+  {
+    id: "html5-initiation",
+    title: "Initiation au langage HTML 5",
+    issuer: "Technofutur TIC",
+    issueDate: "2019-01",
+    description: "Formation aux fondamentaux du HTML5 et aux nouvelles fonctionnalités du web moderne."
+  },
+  {
+    id: "unity-essentials-pathway",
+    title: "Unity Essentials Pathway",
+    issuer: "Unity Technologies",
+    issueDate: "2025-03",
+    description: "Parcours complet pour les créateurs débutants avec Unity et la création de contenu en temps réel. Création d'une première expérience interactive simple, maîtrise des fonctionnalités essentielles de l'éditeur Unity, navigation en 3D, gestion des Scènes, GameObjects, Prefabs et publication de projets Unity.",
+    credentialUrl: "https://www.credly.com/badges/41d71567-ade6-426a-bdce-d9e2a7f8ddf5/linked_in?t=sunhbk"
   }
 ];
 

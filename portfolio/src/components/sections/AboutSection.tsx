@@ -1,48 +1,50 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useTranslation } from '@/hooks/useLanguage';
+import { useTranslation, useLanguage } from '@/hooks/useLanguage';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ScrollableSection } from '@/components/ScrollableSection';
 import { personalInfo } from '@/data/portfolio';
+import { getTranslatedContent } from '@/data/translatedContent';
 import { Code, Coffee, Lightbulb, User } from 'lucide-react';
 
 export function AboutSection() {
   const t = useTranslation();
+  const { language } = useLanguage();
 
   const skillCategories = [
     {
-      title: "Langages de programmation",
+      title: t.about.skillCategories.programming,
       skills: ["Java", "Python", "JavaScript", "TypeScript", "PHP", "C#", "Haskell"],
       icon: "💻",
       color: "cyan"
     },
     {
-      title: "Frameworks & Technologies Web", 
+      title: t.about.skillCategories.frameworks, 
       skills: ["React", "Node.js", "Next.js", "Angular", "jQuery", "Flutter", "HTML", "CSS"],
       icon: "🌐",
       color: "pink"
     },
     {
-      title: "Bases de données",
+      title: t.about.skillCategories.databases,
       skills: ["MySQL", "PostgreSQL"],
       icon: "🗄️",
       color: "green"
     },
     {
-      title: "Outils & Environnements",
+      title: t.about.skillCategories.tools,
       skills: ["Git", "GitHub", "Linux", "Docker", "Jira", "WordPress"],
       icon: "🛠️",
       color: "purple"
     },
     {
-      title: "Systèmes & Réseaux",
+      title: t.about.skillCategories.systems,
       skills: ["Windows", "Linux", "Windows Server", "Administration réseau", "Packet Tracer"],
       icon: "🖥️",
       color: "yellow"
     },
     {
-      title: "Méthodologies",
+      title: t.about.skillCategories.methodologies,
       skills: ["Agile", "Scrum", "OOP", "REST API", "Tailwind CSS"],
       icon: "�",
       color: "orange"
@@ -126,12 +128,12 @@ export function AboutSection() {
               <CardHeader>
                 <CardTitle glowColor="cyan" className="flex items-center space-x-3">
                   <User className="text-cyan-400" size={24} />
-                  <span>Qui suis-je ?</span>
+                  <span>{t.about.whoAmI}</span>
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-300 leading-relaxed mb-4">
-                  {personalInfo.bio}
+                  {getTranslatedContent('personal', '', language, 'bio')}
                 </p>
                 <div className="flex items-center space-x-2 text-cyan-400">
                   <Coffee size={16} />
@@ -156,7 +158,7 @@ export function AboutSection() {
               </CardHeader>
               <CardContent>
                 <p className="text-gray-300 leading-relaxed italic">
-                  "{personalInfo.philosophy}"
+                  "{getTranslatedContent('personal', '', language, 'philosophy')}"
                 </p>
                 <div className="mt-4 text-right">
                   <span className="text-pink-400 font-mono text-sm">- Maxime Allemeersch</span>

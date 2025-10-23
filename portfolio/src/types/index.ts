@@ -30,6 +30,15 @@ export interface Education {
   description?: string;
 }
 
+export interface Certificate {
+  id: string;
+  title: string;
+  issuer: string;
+  issueDate: string;
+  description?: string;
+  credentialUrl?: string;
+}
+
 export interface ContactInfo {
   email: string;
   phone?: string;
@@ -56,6 +65,7 @@ export interface TranslationContent {
     about: string;
     projects: string;
     experience: string;
+    certificates: string;
     contact: string;
   };
   hero: {
@@ -68,22 +78,81 @@ export interface TranslationContent {
     title: string;
     skills: string;
     philosophy: string;
+    whoAmI: string;
+    skillCategories: {
+      programming: string;
+      frameworks: string;
+      databases: string;
+      tools: string;
+      systems: string;
+      methodologies: string;
+    };
+    stats: {
+      projects: string;
+      coffee: string;
+      lines: string;
+      experience: string;
+    };
   };
   projects: {
     title: string;
     viewProject: string;
     viewCode: string;
     technologies: string;
+    featured: string;
+    other: string;
+    subtitle: string;
+    ctaText: string;
+    ctaSubtext: string;
+    demoText: string;
+    codeText: string;
+    liveIndicator: string;
+    openSourceIndicator: string;
   };
   experience: {
     title: string;
     education: string;
     present: string;
+    stats: {
+      experienceYears: string;
+      coffeeLabel: string;
+      projectsLabel: string;
+      technologiesLabel: string;
+    };
+  };
+  certificates: {
+    title: string;
+    subtitle: string;
+    certified: string;
+    stats: {
+      certificates: string;
+      organizations: string;
+      experienceYears: string;
+    };
   };
   contact: {
     title: string;
     subtitle: string;
     sendMessage: string;
+    stayConnected: string;
+    form: {
+      name: string;
+      email: string;
+      subject: string;
+      message: string;
+      placeholder: string;
+      send: string;
+      successMessage: string;
+    };
+    methods: {
+      emailDesc: string;
+      linkedinDesc: string;
+    };
+  };
+  common: {
+    language: string;
+    french: string;
+    english: string;
   };
 }
 

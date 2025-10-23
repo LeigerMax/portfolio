@@ -1,13 +1,15 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useTranslation } from '@/hooks/useLanguage';
+import { useTranslation, useLanguage } from '@/hooks/useLanguage';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { experiences, education } from '@/data/portfolio';
+import { getTranslatedContent } from '@/data/translatedContent';
 import { Briefcase, GraduationCap, Calendar, MapPin } from 'lucide-react';
 
 export function ExperienceSection() {
   const t = useTranslation();
+  const { language } = useLanguage();
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -139,7 +141,7 @@ export function ExperienceSection() {
                     
                     <CardContent>
                       <CardDescription className="mb-4">
-                        {experience.description}
+                        {getTranslatedContent('experiences', experience.id, language, 'description')}
                       </CardDescription>
                       
                       {/* Technologies */}
@@ -206,13 +208,11 @@ export function ExperienceSection() {
                       </div>
                     </CardHeader>
                     
-                    {edu.description && (
-                      <CardContent>
-                        <CardDescription>
-                          {edu.description}
-                        </CardDescription>
-                      </CardContent>
-                    )}
+                    <CardContent>
+                      <CardDescription>
+                        {getTranslatedContent('education', edu.id, language, 'description')}
+                      </CardDescription>
+                    </CardContent>
                   </Card>
                 </motion.div>
               ))}
@@ -261,10 +261,10 @@ export function ExperienceSection() {
           className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4"
         >
           {[
-            { label: "Années d'expérience dans l'informatique", value: "10+", color: "orange" },
-            { label: "Tasses de café", value: "∞", color: "green" },
-            { label: "Projets menés", value: "5+", color: "cyan" },
-            { label: "Technologies maîtrisées", value: "12+", color: "purple" }
+            { label: t.experience.stats.experienceYears, value: "10+", color: "orange" },
+            { label: t.experience.stats.coffeeLabel, value: "∞", color: "green" },
+            { label: t.experience.stats.projectsLabel, value: "5+", color: "cyan" },
+            { label: t.experience.stats.technologiesLabel, value: "12+", color: "purple" }
           ].map((stat, index) => (
             <motion.div
               key={stat.label}

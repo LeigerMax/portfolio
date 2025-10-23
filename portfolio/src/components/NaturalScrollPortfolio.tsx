@@ -19,6 +19,7 @@ import { HeroSection } from '@/components/sections/HeroSection';
 import { AboutSection } from '@/components/sections/AboutSection';
 import { ProjectsSection } from '@/components/sections/ProjectsSection';
 import { ExperienceSection } from '@/components/sections/ExperienceSection';
+import { CertificatesSection } from '@/components/sections/CertificatesSection';
 import { ContactSection } from '@/components/sections/ContactSection';
 
 interface Particle {
@@ -153,6 +154,15 @@ export function NaturalScrollPortfolio() {
           decorElement={<ExperienceDecor />}
         >
           <ExperienceSection />
+        </SectionWrapper>
+
+        {/* Section Certificats */}
+        <SectionWrapper 
+          id="certificates" 
+          backgroundColor="from-yellow-900 via-orange-900 to-amber-900"
+          decorElement={<div />}
+        >
+          <CertificatesSection />
         </SectionWrapper>
 
         {/* Section Contact */}
