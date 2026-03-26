@@ -4,23 +4,23 @@ export const projects = [
     description: "Application web de partage d'albums photo sur le principe d'une chasse au trésor via QR codes.",
     tech: ["Web", "QR Code API", "Interactivité"],
     challenges: "Créer une expérience ludique de déblocage de contenu en temps réel.",
-    image: "/projects/discover.png",
+    image: "/projects/discoverpicture.png",
     links: { github: "#", live: "#" }
   },
   {
     title: "Love4You",
     description: "Application mobile pour couples permettant de partager moments, messages et défis interactifs.",
-    tech: ["Mobile", "Full Stack", "Interaction Design"],
+    tech: ["Flutter", "Firebase"],
     challenges: "Développement d'une approche full-stack centrée sur l'utilisateur mobile.",
-    image: "/projects/love4you.png",
-    links: { github: "#", live: "#" }
+    image: "/projects/love4you.jpg",
+    links: { github: "#", live: "https://love4you.vercel.app/" }
   },
   {
     title: "Motion-Party",
     description: "Jeu interactif pour seniors utilisant la caméra du PC pour transformer le corps en manette.",
     tech: ["Computer Vision", "Interactivité", "UX Senior"],
     challenges: "Assurer une détection précise du mouvement et une accessibilité maximale.",
-    image: "/projects/motion.png",
+    image: "/projects/motion-party.png",
     links: { github: "#", live: "#" }
   },
   {
