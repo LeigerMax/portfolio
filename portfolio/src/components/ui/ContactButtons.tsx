@@ -18,7 +18,7 @@ export function ContactButtons() {
           href={contact.href}
           className="flex items-center gap-4 p-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl transition-all group"
         >
-          <span className="text-orange-400 group-hover:scale-110 transition-transform">
+          <span className="text-purple-400 group-hover:scale-110 transition-transform">
             {contact.icon}
           </span>
           <span className="text-white font-medium">{contact.label}</span>

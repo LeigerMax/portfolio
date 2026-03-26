@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { aboutData } from "@/data/about";
+import { Briefcase, GraduationCap } from "lucide-react";
 
 /**
  * "Qui suis-je" overlay — displayed next to the photo frame.
@@ -55,16 +56,18 @@ export function ParcoursOverlay({ visible }: { visible: boolean }) {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
               {/* EXPERIENCE */}
               <section>
-                <h3 className="text-2xl font-bold text-orange-400 mb-6 flex items-center gap-3">
-                  <span className="p-2 bg-orange-500/20 rounded-lg text-xl">💼</span>
+                <h3 className="text-2xl font-bold text-purple-400 mb-6 flex items-center gap-3">
+                  <span className="p-2 bg-purple-500/20 rounded-lg text-purple-400">
+                    <Briefcase size={20} />
+                  </span>
                   Expérience Professionnelle
                 </h3>
                 <div className="space-y-6">
                   {aboutData.experience.map((exp: any, i: number) => (
-                    <div key={i} className="relative pl-6 border-l-2 border-orange-500/30 group">
-                      <div className="absolute left-[-6px] top-2 w-[10px] h-[10px] bg-orange-500 rounded-full group-hover:scale-125 transition-transform" />
-                      <h4 className="font-bold text-white text-lg leading-tight">{exp.role}</h4>
-                      <div className="text-sm text-orange-300 mb-2">{exp.company} • {exp.period}</div>
+                    <div key={i} className="relative pl-6 border-l-2 border-purple-500/30 group">
+                      <div className="absolute left-[-6px] top-2 w-[10px] h-[10px] bg-purple-500 rounded-full group-hover:scale-125 transition-transform" />
+                      <div className="text-sm font-bold text-white mb-0.5">{exp.title}</div>
+                      <div className="text-sm text-purple-300 mb-2">{exp.company} • {exp.period}</div>
                       <p className="text-sm text-blue-100/70 mb-3">{exp.description}</p>
                       {exp.tags && (
                         <div className="flex gap-2">
@@ -81,7 +84,9 @@ export function ParcoursOverlay({ visible }: { visible: boolean }) {
               {/* EDUCATION */}
               <section>
                 <h3 className="text-2xl font-bold text-emerald-400 mb-6 flex items-center gap-3">
-                  <span className="p-2 bg-emerald-500/20 rounded-lg text-xl">🎓</span>
+                  <span className="p-2 bg-emerald-500/20 rounded-lg text-emerald-400">
+                    <GraduationCap size={20} />
+                  </span>
                   Formation
                 </h3>
                 <div className="space-y-6">

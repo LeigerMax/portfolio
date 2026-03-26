@@ -27,7 +27,7 @@ export default function BackendServers({
           Math.random() * 4 + 0.5,      // Y (ajusté à la nouvelle hauteur)
           0.51                          // Z (face avant)
         ] as [number, number, number],
-        color: Math.random() > 0.5 ? "#00ff00" : "#0088ff",
+        color: Math.random() > 0.5 ? "#d8b4fe" : "#a855f7",
         speed: 1 + Math.random() * 3
       });
     }
@@ -94,7 +94,7 @@ export default function BackendServers({
       onPointerOut={() => (document.body.style.cursor = "auto")}
     >
       {/* Indicateur de clic tactile */}
-      <ClickIndicator position={[0, 0.1, 0]} scale={4.8} color="#00ff00" />
+      <ClickIndicator position={[0, 0.1, 0]} scale={4.8} color="#a855f7" />
 
       {/* Structure du Rack (Hauteur réduite à 4.5) */}
       <Box args={[2.5, 4.5, 2]} position={[0, 2.25, 0]} castShadow>
@@ -105,14 +105,14 @@ export default function BackendServers({
       <pointLight
         position={[0, 2, 1]}
         intensity={status === "rebooting" ? 1.5 : 0.8}
-        color={status === "rebooting" ? "red" : "#0088ff"}
+        color={status === "rebooting" ? "red" : "#a855f7"}
         distance={5}
       />
 
       {/* Détails du Rack (Lignes horizontales / Serveurs) */}
       {Array.from({ length: 8 }).map((_, i) => (
         <Box key={i} args={[2.3, 0.1, 0.05]} position={[0, i * 0.5 + 0.5, 1.01]}>
-          <meshStandardMaterial color="#1a1a1a" emissive={status === "rebooted" ? "#00ff00" : "#000"} emissiveIntensity={0.2} />
+          <meshStandardMaterial color="#1a1a1a" emissive={status === "rebooted" ? "#a855f7" : "#000"} emissiveIntensity={0.2} />
         </Box>
       ))}
 
@@ -127,7 +127,7 @@ export default function BackendServers({
         <Text
           position={[0, 0, 0.02]}
           fontSize={0.12}
-          color={status === "rebooting" ? "red" : status === "rebooted" ? "#00ff00" : "#ffffff"}
+          color={status === "rebooting" ? "red" : status === "rebooted" ? "#a855f7" : "#ffffff"}
         >
           {status === "rebooting" ? "SYSTEM REBOOT..." : status === "rebooted" ? "SYSTEM ONLINE" : "SERVER [BACKEND]"}
         </Text>

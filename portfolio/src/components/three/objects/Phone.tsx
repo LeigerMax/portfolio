@@ -53,7 +53,7 @@ export default function Phone({
       onPointerOut={() => (document.body.style.cursor = "auto")}
     >
       {/* Indicateur de clic */}
-      <ClickIndicator position={[0, 0.05, 0]} scale={0.5} color="#ffffff" />
+      <ClickIndicator position={[0, 0.05, 0]} scale={0.5} color="#a855f7" />
 
       {/* Corps du téléphone */}
       <Box args={[0.42, 0.08, 0.85]} castShadow>
@@ -62,7 +62,7 @@ export default function Phone({
 
       {/* Écran */}
       <Box args={[0.38, 0.01, 0.78]} position={[0, 0.045, 0]}>
-        <meshStandardMaterial color="#000" emissive="#4cc9f0" emissiveIntensity={0.5} />
+        <meshStandardMaterial color="#000" emissive="#a855f7" emissiveIntensity={0.5} />
       </Box>
 
       {/* Notification flottante */}

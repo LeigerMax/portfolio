@@ -17,7 +17,7 @@ export default function Home() {
   const [showCerts, setShowCerts] = useState(false);
   const [showProjects, setShowProjects] = useState(false);
   const [showContact, setShowContact] = useState(false);
-  
+
   // État pour masquer l'UI et passer en mode libre
   const [isUIVisible, setIsUIVisible] = useState(true);
 
@@ -136,11 +136,11 @@ export default function Home() {
             <h1 className="text-8xl font-black text-white mb-2 uppercase tracking-tighter italic">
               Maxime Allemeersch
             </h1>
-            <p className="text-2xl text-orange-400 font-mono uppercase tracking-[0.2em] mb-4">
+            <p className="text-2xl text-purple-400 font-mono uppercase tracking-[0.2em] mb-4">
               Software Engineer
             </p>
             <p className="text-white/70 max-w-lg mx-auto mb-8 leading-relaxed">
-              Développeur passionné et polyvalent, spécialisé dans la création de solutions complètes, du front-end aux architectures cloud.
+              Développeur passionné et polyvalent, spécialisé dans la création de solutions complètes.
             </p>
             <div className="animate-bounce text-white/50 font-mono text-sm uppercase tracking-widest">
               Scrollez pour explorer mon espace
@@ -154,51 +154,51 @@ export default function Home() {
         <section className="h-screen flex items-center justify-start p-20 pointer-events-none">
           <div className="max-w-2xl bg-black/60 backdrop-blur-xl p-10 border border-white/10 rounded-3xl pointer-events-auto shadow-2xl">
             <h2 className="text-5xl font-black text-white mb-6 uppercase italic tracking-tighter">La Bibliothèque des Compétences</h2>
-            
+
             <div className="grid grid-cols-2 gap-8 text-sm">
-                <div>
-                    <h3 className="text-blue-400 font-bold uppercase mb-3 tracking-widest border-b border-blue-400/30 pb-1">Langages</h3>
-                    <div className="flex flex-wrap gap-2">
-                        {["Java", "Python", "JavaScript", "TypeScript", "PHP", "C#", "Haskell"].map(s => (
-                            <span key={s} className="text-gray-300 bg-white/5 px-2 py-0.5 rounded border border-white/10">{s}</span>
-                        ))}
-                    </div>
+              <div>
+                <h3 className="text-blue-400 font-bold uppercase mb-3 tracking-widest border-b border-blue-400/30 pb-1">Langages</h3>
+                <div className="flex flex-wrap gap-2">
+                  {["Java", "Python", "JavaScript", "TypeScript", "PHP", "C#", "Haskell"].map(s => (
+                    <span key={s} className="text-gray-300 bg-white/5 px-2 py-0.5 rounded border border-white/10">{s}</span>
+                  ))}
                 </div>
-                <div>
-                    <h3 className="text-green-400 font-bold uppercase mb-3 tracking-widest border-b border-green-400/30 pb-1">Frameworks & Web</h3>
-                    <div className="flex flex-wrap gap-2">
-                        {["React", "Node.js", "Next.js", "Angular", "jQuery", "Flutter", "HTML", "CSS"].map(s => (
-                            <span key={s} className="text-gray-300 bg-white/5 px-2 py-0.5 rounded border border-white/10">{s}</span>
-                        ))}
-                    </div>
+              </div>
+              <div>
+                <h3 className="text-green-400 font-bold uppercase mb-3 tracking-widest border-b border-green-400/30 pb-1">Frameworks & Web</h3>
+                <div className="flex flex-wrap gap-2">
+                  {["React", "Node.js", "Next.js", "Angular", "jQuery", "Flutter", "HTML", "CSS"].map(s => (
+                    <span key={s} className="text-gray-300 bg-white/5 px-2 py-0.5 rounded border border-white/10">{s}</span>
+                  ))}
                 </div>
-                <div>
-                    <h3 className="text-yellow-400 font-bold uppercase mb-3 tracking-widest border-b border-yellow-400/30 pb-1">Bases de données</h3>
-                    <div className="flex flex-wrap gap-2">
-                        {["MySQL", "PostgreSQL"].map(s => (
-                            <span key={s} className="text-gray-300 bg-white/5 px-2 py-0.5 rounded border border-white/10">{s}</span>
-                        ))}
-                    </div>
+              </div>
+              <div>
+                <h3 className="text-yellow-400 font-bold uppercase mb-3 tracking-widest border-b border-yellow-400/30 pb-1">Bases de données</h3>
+                <div className="flex flex-wrap gap-2">
+                  {["MySQL", "PostgreSQL"].map(s => (
+                    <span key={s} className="text-gray-300 bg-white/5 px-2 py-0.5 rounded border border-white/10">{s}</span>
+                  ))}
                 </div>
-                <div>
-                    <h3 className="text-red-400 font-bold uppercase mb-3 tracking-widest border-b border-red-400/30 pb-1">Outils & Environnements</h3>
-                    <div className="flex flex-wrap gap-2">
-                        {["Git", "GitHub", "Linux", "Docker", "Jira", "WordPress"].map(s => (
-                            <span key={s} className="text-gray-300 bg-white/5 px-2 py-0.5 rounded border border-white/10">{s}</span>
-                        ))}
-                    </div>
+              </div>
+              <div>
+                <h3 className="text-red-400 font-bold uppercase mb-3 tracking-widest border-b border-red-400/30 pb-1">Outils & Environnements</h3>
+                <div className="flex flex-wrap gap-2">
+                  {["Git", "GitHub", "Linux", "Docker", "Jira", "WordPress"].map(s => (
+                    <span key={s} className="text-gray-300 bg-white/5 px-2 py-0.5 rounded border border-white/10">{s}</span>
+                  ))}
                 </div>
-                <div className="col-span-2">
-                    <h3 className="text-orange-400 font-bold uppercase mb-3 tracking-widest border-b border-orange-400/30 pb-1">Méthodologies & Systèmes</h3>
-                    <div className="flex flex-wrap gap-2">
-                        {[
-                          "Agile", "Scrum", "OOP", "REST API", "Tailwind CSS", 
-                          "Windows Server", "Administration réseau", "Packet Tracer"
-                        ].map(s => (
-                            <span key={s} className="text-gray-300 bg-white/5 px-2 py-0.5 rounded border border-white/10">{s}</span>
-                        ))}
-                    </div>
+              </div>
+              <div className="col-span-2">
+                <h3 className="text-purple-400 font-bold uppercase mb-3 tracking-widest border-b border-purple-400/30 pb-1">Méthodologies & Systèmes</h3>
+                <div className="flex flex-wrap gap-2">
+                  {[
+                    "Agile", "Scrum", "OOP", "REST API", "Tailwind CSS",
+                    "Windows Server", "Administration réseau", "Packet Tracer"
+                  ].map(s => (
+                    <span key={s} className="text-gray-300 bg-white/5 px-2 py-0.5 rounded border border-white/10">{s}</span>
+                  ))}
                 </div>
+              </div>
             </div>
           </div>
         </section>
@@ -214,7 +214,7 @@ export default function Home() {
 
         <section id="projects-section" className="h-screen flex items-center justify-center p-8 pointer-events-none">
           <div className={`w-full flex justify-center transition-all duration-700 transform ${showProjects ? 'opacity-100 scale-100 pointer-events-auto' : 'opacity-0 scale-95 pointer-events-none'}`}>
-             <ProjectGrid />
+            <ProjectGrid />
           </div>
         </section>
 

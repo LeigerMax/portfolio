@@ -2,29 +2,30 @@
 
 import { useState } from "react";
 import { certifications } from "@/data/certs";
+import { Award, Gamepad2, GraduationCap, Server } from "lucide-react";
 
 const ITEMS_PER_PAGE = 4;
 
 // Icônes par émetteur
 function getIssuerIcon(issuer: string) {
-  if (issuer.includes("Red Hat")) return "🎩";
-  if (issuer.includes("Unity")) return "🎮";
-  if (issuer.includes("Technofutur")) return "🎓";
-  return "📜";
+  if (issuer.includes("Red Hat")) return <Server size={28} />;
+  if (issuer.includes("Unity")) return <Gamepad2 size={28} />;
+  if (issuer.includes("Technofutur")) return <GraduationCap size={28} />;
+  return <Award size={28} />;
 }
 
 function getIssuerColor(issuer: string) {
   if (issuer.includes("Red Hat")) return "from-red-500/20 to-red-900/10 border-red-500/30";
   if (issuer.includes("Unity")) return "from-emerald-500/20 to-emerald-900/10 border-emerald-500/30";
   if (issuer.includes("Technofutur")) return "from-blue-500/20 to-blue-900/10 border-blue-500/30";
-  return "from-orange-500/20 to-orange-900/10 border-orange-500/30";
+  return "from-purple-500/20 to-purple-900/10 border-purple-500/30";
 }
 
 function getIssuerAccent(issuer: string) {
   if (issuer.includes("Red Hat")) return "text-red-400";
   if (issuer.includes("Unity")) return "text-emerald-400";
   if (issuer.includes("Technofutur")) return "text-blue-400";
-  return "text-orange-400";
+  return "text-purple-400";
 }
 
 export function CertificatesOverlay({ visible }: { visible: boolean }) {
@@ -46,7 +47,7 @@ export function CertificatesOverlay({ visible }: { visible: boolean }) {
             <h2 className="text-5xl font-black text-white uppercase italic tracking-tighter">
               Certifications
             </h2>
-            <div className="h-1.5 w-20 bg-orange-500 mt-2 rounded-full" />
+            <div className="h-1.5 w-20 bg-purple-500 mt-2 rounded-full" />
           </div>
           <div className="text-sm text-white/40 font-mono">
             {certifications.length} certificats
@@ -89,9 +90,9 @@ export function CertificatesOverlay({ visible }: { visible: boolean }) {
         {totalPages > 1 && (
           <div className="flex items-center justify-center gap-3">
             <button
-              onClick={() => setPage(p => Math.max(0, p - 1))}
+              onClick={() => setPage((p: number) => Math.max(0, p - 1))}
               disabled={page === 0}
-              className="px-4 py-2 bg-white/5 border border-white/10 text-white rounded-lg hover:bg-orange-500/20 hover:border-orange-500/30 transition-all disabled:opacity-20 disabled:cursor-not-allowed cursor-pointer text-sm font-bold"
+              className="px-4 py-2 bg-white/5 border border-white/10 text-white rounded-lg hover:bg-purple-500/20 hover:border-purple-500/30 transition-all disabled:opacity-20 disabled:cursor-not-allowed cursor-pointer text-sm font-bold"
             >
               ← Préc.
             </button>
@@ -103,7 +104,7 @@ export function CertificatesOverlay({ visible }: { visible: boolean }) {
                   onClick={() => setPage(i)}
                   className={`w-8 h-8 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                     i === page
-                      ? "bg-orange-500 text-black"
+                      ? "bg-purple-500 text-black"
                       : "bg-white/5 text-white/50 hover:bg-white/10"
                   }`}
                 >
@@ -113,9 +114,9 @@ export function CertificatesOverlay({ visible }: { visible: boolean }) {
             </div>
 
             <button
-              onClick={() => setPage(p => Math.min(totalPages - 1, p + 1))}
+              onClick={() => setPage((p: number) => Math.min(totalPages - 1, p + 1))}
               disabled={page === totalPages - 1}
-              className="px-4 py-2 bg-white/5 border border-white/10 text-white rounded-lg hover:bg-orange-500/20 hover:border-orange-500/30 transition-all disabled:opacity-20 disabled:cursor-not-allowed cursor-pointer text-sm font-bold"
+              className="px-4 py-2 bg-white/5 border border-white/10 text-white rounded-lg hover:bg-purple-500/20 hover:border-purple-500/30 transition-all disabled:opacity-20 disabled:cursor-not-allowed cursor-pointer text-sm font-bold"
             >
               Suiv. →
             </button>

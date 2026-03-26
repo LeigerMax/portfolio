@@ -102,8 +102,8 @@ export function Office() {
       </group>
 
       {/* Lumières d'ambiance */}
-      <pointLight position={[-10, 13, 10]} intensity={0.4} color="#ff9966" distance={30} />
-      <pointLight position={[10, 11, -5]} intensity={0.3} color="#99aaff" distance={30} />
+      <pointLight position={[-10, 13, 10]} intensity={0.4} color="#a78bfa" distance={30} />
+      <pointLight position={[10, 11, -5]} intensity={0.3} color="#818cf8" distance={30} />
     </group>
   );
 }

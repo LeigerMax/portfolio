@@ -9,9 +9,9 @@ export const projects = [
   },
   {
     title: "Love4You",
-    description: "Application mobile pour couples permettant de partager moments, messages et défis interactifs.",
-    tech: ["Flutter", "Firebase"],
-    challenges: "Développement d'une approche full-stack centrée sur l'utilisateur mobile.",
+    description: "Écosystème complet pour couples : App mobile de gamification (actions quotidiennes, cartes à gratter, quiz, jeux de rôle) et site vitrine optimisé.",
+    tech: ["Flutter", "Firebase", "Next.js", "React", "TypeScript", "Tailwind", "Agent IA", "Notion", "CI/CD", "Vercel"],
+    challenges: "Gestion de l'architecture logicielle de A à Z : développement mobile et web, tests, déploiement automatisé (GitHub Actions), SEO, Google Analytics et stratégie marketing sur les réseaux sociaux.",
     image: "/projects/love4you.jpg",
     links: { github: "#", live: "https://love4you.vercel.app/" }
   },
@@ -41,10 +41,18 @@ export const projects = [
   },
   {
     title: "Aura-English",
-    description: "Application mobile d'apprentissage de l'anglais via des flashcards intelligentes.",
-    tech: ["Flutter", "Dart", "SQLite"],
-    challenges: "Optimisation de l'expérience de recherche mobile et gestion de gros volumes de données locales.",
+    description: "App d'apprentissage de l'anglais : flashcards, quiz interactifs, rappels intelligents par notification et génération de phrases par IA.",
+    tech: ["Flutter", "Dart", "SQLite", "Agent IA", "OpenAI API", "Vercel"],
+    challenges: "Développement d'un système d'avancement personnalisé et intégration d'une IA pour la correction grammaticale et la génération de phrases contextuelles.",
     image: "/projects/aura.png",
-    links: { github: "#", live: "#" }
+    links: { github: "https://github.com/LeigerMax/aura-english/", live: "https://aura-english.vercel.app/" }
+  },
+  {
+    title: "Les Grignotons (Refonte)",
+    description: "Refonte d'un site d'élevage familial. Passage d'un design obsolète à une stack moderne avec un dashboard simplifié sur-mesure pour la cliente.",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Sanity", "Vercel", "Angular"],
+    challenges: "Proposer une interface d'administration extrêmement simple via Sanity pour une personne peu à l'aise avec le web. Résultat d'une étroite collaboration et de réunions avec la cliente pour cerner ses besoins spécifiques, tout en conservant une solution gratuite d'hébergement.",
+    image: "/projects/grignotons.png",
+    links: { github: "https://github.com/LeigerMax/Les-Grignotons", live: "https://les-grignotons-elevage.vercel.app/" }
   }
 ];

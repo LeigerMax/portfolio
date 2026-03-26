@@ -68,7 +68,7 @@ export default function CoffeeCup({
       onPointerOut={() => (document.body.style.cursor = "auto")}
     >
       {/* Indicateur de clic */}
-      <ClickIndicator position={[0, 0.01, 0]} scale={0.4} color="#ffffff" />
+      <ClickIndicator position={[0, 0.01, 0]} scale={0.4} color="#a855f7" />
 
       {/* Corps de la tasse */}
       <Cylinder args={[0.15, 0.12, 0.3, 32]} position={[0, 0.15, 0]} castShadow>
