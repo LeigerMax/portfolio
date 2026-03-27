@@ -25,31 +25,31 @@ export function CameraManager({ isUIVisible }: { isUIVisible: boolean }) {
 
     // Sinon, on initialise le parcours guidé (ScrollTrigger)
     const cameraPoints = {
-      hero: { 
+      hero: {
         pos: new THREE.Vector3(0, 9, 16),
         lookAt: new THREE.Vector3(0, 3, -2)
       },
-      whoami: { 
+      whoami: {
         pos: new THREE.Vector3(-6, 7, 10),
         lookAt: new THREE.Vector3(-14.8, 7, 8)
       },
-      parcours: { 
+      parcours: {
         pos: new THREE.Vector3(-4, 7, 3),
         lookAt: new THREE.Vector3(-14.8, 6, -5)
       },
-      skills: { 
+      skills: {
         pos: new THREE.Vector3(-4, 8, 5),
         lookAt: new THREE.Vector3(-11.5, 7, -10)
       },
-      certs: { 
+      certs: {
         pos: new THREE.Vector3(0, 8, -2),
         lookAt: new THREE.Vector3(0, 6, -14.8)
       },
-      projects: { 
+      projects: {
         pos: new THREE.Vector3(0, 2.9, -1.8),
         lookAt: new THREE.Vector3(0, 2.95, -2.8)
       },
-      contact: { 
+      contact: {
         pos: new THREE.Vector3(6, 5, 6),
         lookAt: new THREE.Vector3(2.2, 2.3, 0.6)
       },
@@ -116,13 +116,13 @@ export function CameraManager({ isUIVisible }: { isUIVisible: boolean }) {
   }, [camera, isUIVisible]);
 
   return !isUIVisible ? (
-    <OrbitControls 
-       enableDamping 
-       dampingFactor={0.05} 
-       rotateSpeed={0.5} 
-       minDistance={2} 
-       maxDistance={30} 
-       maxPolarAngle={Math.PI / 1.8}
+    <OrbitControls
+      enableDamping
+      dampingFactor={0.05}
+      rotateSpeed={0.5}
+      minDistance={2}
+      maxDistance={30}
+      maxPolarAngle={Math.PI / 1.8}
     />
   ) : null;
 }

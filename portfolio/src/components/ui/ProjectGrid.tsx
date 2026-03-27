@@ -2,15 +2,29 @@
 
 import { useState } from "react";
 import { projects } from "@/data/projects";
+import { ProjectModal } from "./ProjectModal";
+import { Project } from "@/types";
 
 export function ProjectGrid() {
-  const [selectedProject, setSelectedProject] = useState<any>(null);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const projectsPerPage = 6;
-  
+
   const totalPages = Math.ceil(projects.length / projectsPerPage);
   const startIndex = (currentPage - 1) * projectsPerPage;
   const currentProjects = projects.slice(startIndex, startIndex + projectsPerPage);
+
+  const handleNext = () => {
+    if (selectedIndex !== null) {
+      setSelectedIndex((prev) => (prev! + 1) % projects.length);
+    }
+  };
+
+  const handlePrev = () => {
+    if (selectedIndex !== null) {
+      setSelectedIndex((prev) => (prev! - 1 + projects.length) % projects.length);
+    }
+  };
 
   return (
     <div id="projects" className="w-full max-w-6xl px-4">
@@ -30,7 +44,7 @@ export function ProjectGrid() {
             {/* Image du projet */}
             <div className="relative h-44 bg-gradient-to-br from-gray-800 to-gray-900 overflow-hidden">
               <img
-                src={project.image}
+                src={project.images[0]}
                 alt={project.title}
                 className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
                 onError={(e) => {
@@ -51,7 +65,7 @@ export function ProjectGrid() {
 
               {/* Technos */}
               <div className="flex flex-wrap gap-1.5 mb-3">
-                {project.tech.map((t: string) => (
+                {project.technologies.map((t: string) => (
                   <span key={t} className="text-[10px] uppercase font-bold tracking-wider text-purple-400/80 bg-purple-500/10 border border-purple-500/20 px-2 py-0.5 rounded-full">
                     {t}
                   </span>
@@ -65,7 +79,7 @@ export function ProjectGrid() {
 
               {/* Bouton Découvrir */}
               <button
-                onClick={() => setSelectedProject(project)}
+                onClick={() => setSelectedIndex(startIndex + idx)}
                 className="w-full py-2.5 bg-white/5 border border-white/10 text-white text-sm font-bold uppercase tracking-wider rounded-xl hover:bg-purple-500 hover:border-purple-500 hover:text-black transition-all duration-300 cursor-pointer"
               >
                 Découvrir →
@@ -88,7 +102,7 @@ export function ProjectGrid() {
           >
             ←
           </button>
-          
+
           <div className="flex gap-2">
             {Array.from({ length: totalPages }).map((_, i) => (
               <button
@@ -97,11 +111,10 @@ export function ProjectGrid() {
                   setCurrentPage(i + 1);
                   document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className={`w-10 h-10 rounded-xl font-bold transition-all cursor-pointer border ${
-                  currentPage === i + 1 
-                    ? "bg-purple-500 border-purple-500 text-black shadow-[0_0_20px_rgba(168,85,247,0.4)]" 
-                    : "bg-white/5 border-white/10 text-white hover:bg-white/10"
-                }`}
+                className={`w-10 h-10 rounded-xl font-bold transition-all cursor-pointer border ${currentPage === i + 1
+                  ? "bg-purple-500 border-purple-500 text-black shadow-[0_0_20px_rgba(168,85,247,0.4)]"
+                  : "bg-white/5 border-white/10 text-white hover:bg-white/10"
+                  }`}
               >
                 {i + 1}
               </button>
@@ -122,69 +135,12 @@ export function ProjectGrid() {
       )}
 
       {/* MODAL DÉTAIL */}
-      {selectedProject && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-8">
-          <div
-            className="absolute inset-0 bg-black/90 backdrop-blur-xl"
-            onClick={() => setSelectedProject(null)}
-          />
-
-          <div className="relative bg-[#111] border border-white/10 rounded-3xl w-full max-w-4xl max-h-[90vh] overflow-y-auto shadow-2xl">
-            <button
-              onClick={() => setSelectedProject(null)}
-              className="absolute top-6 right-6 z-10 text-white/50 hover:text-white transition-colors cursor-pointer"
-            >
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
-            </button>
-
-            {/* Image en-tête modale */}
-            <div className="relative h-56 bg-gradient-to-br from-gray-800 to-gray-900 rounded-t-3xl overflow-hidden">
-              <img
-                src={selectedProject.image}
-                alt={selectedProject.title}
-                className="w-full h-full object-cover opacity-70"
-                onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-transparent to-transparent" />
-            </div>
-
-            <div className="p-12 -mt-12 relative">
-              <h3 className="text-5xl font-black text-white uppercase italic tracking-tighter mb-4">
-                {selectedProject.title}
-              </h3>
-
-              <div className="flex flex-wrap gap-2 mb-8">
-                {selectedProject.tech.map((t: string) => (
-                  <span key={t} className="px-3 py-1 bg-purple-500/10 text-purple-400 text-xs font-bold uppercase tracking-widest rounded-full border border-purple-500/20">
-                    {t}
-                  </span>
-                ))}
-              </div>
-
-              <div className="space-y-8">
-                <div>
-                  <h4 className="text-purple-400 font-bold uppercase tracking-widest text-xs mb-3">Le Projet</h4>
-                  <p className="text-gray-300 leading-relaxed text-lg">{selectedProject.description}</p>
-                </div>
-
-                <div>
-                  <h4 className="text-purple-400 font-bold uppercase tracking-widest text-xs mb-3">Architecture & Défis</h4>
-                  <p className="text-gray-300 leading-relaxed italic">{selectedProject.challenges}</p>
-                </div>
-
-                <div className="flex gap-4 pt-4">
-                  <a href={selectedProject.links.live} className="flex-1 py-4 bg-purple-500 text-black font-black uppercase tracking-tighter text-center rounded-xl hover:bg-purple-400 transition-colors">
-                    Voir le Live
-                  </a>
-                  <a href={selectedProject.links.github} className="px-6 py-4 bg-white/5 text-white border border-white/10 font-bold rounded-xl hover:bg-white/10 transition-colors">
-                    GitHub
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      <ProjectModal 
+        project={selectedIndex !== null ? projects[selectedIndex] : null} 
+        onClose={() => setSelectedIndex(null)}
+        onNext={handleNext}
+        onPrev={handlePrev}
+      />
     </div>
   );
 }

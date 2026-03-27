@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { certifications } from "@/data/certs";
-import { Award, Gamepad2, GraduationCap, Server } from "lucide-react";
+import { Certification, certifications, ExtraCertification, extraCertifications } from "@/data/certs";
+import { Award, BookOpen, Gamepad2, GraduationCap, Server } from "lucide-react";
 
 const ITEMS_PER_PAGE = 4;
+const EXTRA_ITEMS_PER_PAGE = 6;
 
 // Icônes par émetteur
 function getIssuerIcon(issuer: string) {
@@ -30,8 +31,13 @@ function getIssuerAccent(issuer: string) {
 
 export function CertificatesOverlay({ visible }: { visible: boolean }) {
   const [page, setPage] = useState(0);
+  const [extraPage, setExtraPage] = useState(0);
+
   const totalPages = Math.ceil(certifications.length / ITEMS_PER_PAGE);
   const current = certifications.slice(page * ITEMS_PER_PAGE, (page + 1) * ITEMS_PER_PAGE);
+
+  const totalExtraPages = Math.ceil(extraCertifications.length / EXTRA_ITEMS_PER_PAGE);
+  const currentExtra = extraCertifications.slice(extraPage * EXTRA_ITEMS_PER_PAGE, (extraPage + 1) * EXTRA_ITEMS_PER_PAGE);
 
   if (!visible) return null;
 
@@ -54,9 +60,8 @@ export function CertificatesOverlay({ visible }: { visible: boolean }) {
           </div>
         </div>
 
-        {/* Grille 2x2 */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-          {current.map((cert: any, i: number) => (
+          {current.map((cert: Certification, i: number) => (
             <div
               key={page * ITEMS_PER_PAGE + i}
               className={`group relative bg-gradient-to-br ${getIssuerColor(cert.issuer)} border rounded-xl p-5 hover:scale-[1.02] transition-all duration-300`}
@@ -67,7 +72,7 @@ export function CertificatesOverlay({ visible }: { visible: boolean }) {
                   {getIssuerIcon(cert.issuer)}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-white font-bold text-sm leading-tight mb-1.5 line-clamp-2">
+                  <h3 className="text-white font-bold text-sm leading-tight mb-1.5 line-clamp-2 pr-28">
                     {cert.title}
                   </h3>
                   <div className={`text-xs font-semibold ${getIssuerAccent(cert.issuer)} mb-2`}>
@@ -79,34 +84,33 @@ export function CertificatesOverlay({ visible }: { visible: boolean }) {
                 </div>
               </div>
               {/* Date badge */}
-              <div className="absolute top-4 right-4 text-[10px] font-mono text-white/30 uppercase tracking-wider bg-white/5 px-2 py-0.5 rounded-full">
+              <div className="absolute top-5 right-5 text-[10px] font-mono text-white/30 uppercase tracking-wider bg-white/5 px-2 py-0.5 rounded-full">
                 {cert.date}
               </div>
             </div>
           ))}
         </div>
 
-        {/* Pagination */}
+        {/* Pagination Principale */}
         {totalPages > 1 && (
           <div className="flex items-center justify-center gap-3">
             <button
               onClick={() => setPage((p: number) => Math.max(0, p - 1))}
               disabled={page === 0}
-              className="px-4 py-2 bg-white/5 border border-white/10 text-white rounded-lg hover:bg-purple-500/20 hover:border-purple-500/30 transition-all disabled:opacity-20 disabled:cursor-not-allowed cursor-pointer text-sm font-bold"
+              className="px-4 py-1.5 bg-white/5 border border-white/10 text-white rounded-lg hover:bg-purple-500/20 hover:border-purple-500/30 transition-all disabled:opacity-20 disabled:cursor-not-allowed cursor-pointer text-xs font-bold"
             >
-              ← Préc.
+              ←
             </button>
-            
-            <div className="flex gap-1.5">
+
+            <div className="flex gap-1">
               {Array.from({ length: totalPages }).map((_, i) => (
                 <button
                   key={i}
                   onClick={() => setPage(i)}
-                  className={`w-8 h-8 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                    i === page
-                      ? "bg-purple-500 text-black"
-                      : "bg-white/5 text-white/50 hover:bg-white/10"
-                  }`}
+                  className={`w-6 h-6 rounded-md text-[10px] font-bold transition-all cursor-pointer ${i === page
+                    ? "bg-purple-500 text-black"
+                    : "bg-white/5 text-white/50 hover:bg-white/10"
+                    }`}
                 >
                   {i + 1}
                 </button>
@@ -116,12 +120,64 @@ export function CertificatesOverlay({ visible }: { visible: boolean }) {
             <button
               onClick={() => setPage((p: number) => Math.min(totalPages - 1, p + 1))}
               disabled={page === totalPages - 1}
-              className="px-4 py-2 bg-white/5 border border-white/10 text-white rounded-lg hover:bg-purple-500/20 hover:border-purple-500/30 transition-all disabled:opacity-20 disabled:cursor-not-allowed cursor-pointer text-sm font-bold"
+              className="px-4 py-1.5 bg-white/5 border border-white/10 text-white rounded-lg hover:bg-purple-500/20 hover:border-purple-500/30 transition-all disabled:opacity-20 disabled:cursor-not-allowed cursor-pointer text-xs font-bold"
             >
-              Suiv. →
+              →
             </button>
           </div>
         )}
+
+        {/* Formations Optionnelles */}
+        <div className="mt-8 pt-6 border-t border-white/5">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-2">
+              <BookOpen size={18} className="text-purple-400" />
+              <h3 className="text-sm font-bold text-white/70 uppercase tracking-widest">
+                Autres Formations & Cours
+              </h3>
+            </div>
+            
+            {/* Pagination Optionnelle */}
+            {totalExtraPages > 1 && (
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => setExtraPage((p) => Math.max(0, p - 1))}
+                  disabled={extraPage === 0}
+                  className="p-1.5 bg-white/5 border border-white/10 text-white rounded-md hover:bg-purple-500/20 disabled:opacity-20 cursor-pointer"
+                >
+                  ←
+                </button>
+                <span className="text-[10px] font-mono text-white/40">
+                  {extraPage + 1} / {totalExtraPages}
+                </span>
+                <button
+                  onClick={() => setExtraPage((p) => Math.min(totalExtraPages - 1, p + 1))}
+                  disabled={extraPage === totalExtraPages - 1}
+                  className="p-1.5 bg-white/5 border border-white/10 text-white rounded-md hover:bg-purple-500/20 disabled:opacity-20 cursor-pointer"
+                >
+                  →
+                </button>
+              </div>
+            )}
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+            {currentExtra.map((extra: ExtraCertification, i: number) => (
+              <div 
+                key={extraPage * EXTRA_ITEMS_PER_PAGE + i}
+                className="bg-white/5 border border-white/10 rounded-lg p-3 hover:bg-white/10 transition-colors group min-h-[80px] flex flex-col justify-center"
+              >
+                <div className="text-[11px] font-bold text-purple-400/80 mb-1.5 flex justify-between items-center bg-purple-500/5 px-2 py-0.5 rounded-full">
+                  <span>{extra.issuer}</span>
+                  <span className="text-[10px] text-white/30 font-mono italic">{extra.date}</span>
+                </div>
+                <h4 className="text-white/90 text-[13px] font-bold leading-tight group-hover:text-white transition-colors line-clamp-2 px-1">
+                  {extra.title}
+                </h4>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

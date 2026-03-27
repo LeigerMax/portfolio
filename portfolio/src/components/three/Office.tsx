@@ -25,7 +25,7 @@ export function Office() {
 
   useFrame((state) => {
     if (screenRef.current) {
-      const intensity = 0.4 + Math.sin(state.clock.elapsedTime * 2) * 0.1;
+      const intensity = 0.1 + Math.sin(state.clock.elapsedTime * 2) * 0.05;
       (screenRef.current.material as THREE.MeshStandardMaterial).emissiveIntensity = intensity;
     }
   });

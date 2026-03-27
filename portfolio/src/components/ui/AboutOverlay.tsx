@@ -4,6 +4,22 @@ import { motion, AnimatePresence } from "framer-motion";
 import { aboutData } from "@/data/about";
 import { Briefcase, GraduationCap } from "lucide-react";
 
+interface ExperienceItem {
+  title?: string;
+  role?: string;
+  company: string;
+  period: string;
+  description: string;
+  tags?: string[];
+}
+
+interface EducationItem {
+  degree: string;
+  school: string;
+  period: string;
+  description: string;
+}
+
 /**
  * "Qui suis-je" overlay — displayed next to the photo frame.
  * Shows only the bio text, aligned to the right of the frame.
@@ -63,10 +79,10 @@ export function ParcoursOverlay({ visible }: { visible: boolean }) {
                   Expérience Professionnelle
                 </h3>
                 <div className="space-y-6">
-                  {aboutData.experience.map((exp: any, i: number) => (
+                  {aboutData.experience.map((exp: ExperienceItem, i: number) => (
                     <div key={i} className="relative pl-6 border-l-2 border-purple-500/30 group">
                       <div className="absolute left-[-6px] top-2 w-[10px] h-[10px] bg-purple-500 rounded-full group-hover:scale-125 transition-transform" />
-                      <div className="text-sm font-bold text-white mb-0.5">{exp.title}</div>
+                      <div className="text-sm font-bold text-white mb-0.5">{exp.role || exp.title}</div>
                       <div className="text-sm text-purple-300 mb-2">{exp.company} • {exp.period}</div>
                       <p className="text-sm text-blue-100/70 mb-3">{exp.description}</p>
                       {exp.tags && (
@@ -90,7 +106,7 @@ export function ParcoursOverlay({ visible }: { visible: boolean }) {
                   Formation
                 </h3>
                 <div className="space-y-6">
-                  {aboutData.education.map((edu: any, i: number) => (
+                  {aboutData.education.map((edu: EducationItem, i: number) => (
                     <div key={i} className="relative pl-6 border-l-2 border-emerald-500/30 group">
                       <div className="absolute left-[-6px] top-2 w-[10px] h-[10px] bg-emerald-500 rounded-full group-hover:scale-125 transition-transform" />
                       <h4 className="font-bold text-white text-lg leading-tight">{edu.degree}</h4>

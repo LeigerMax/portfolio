@@ -7,7 +7,7 @@ import * as THREE from "three";
 
 export default function ClickIndicator({
   position = [0, 0, 0],
-  color = "#00ffff", // Cyan néon
+  color = "#9805faff",
   scale = 1
 }: {
   position?: [number, number, number],

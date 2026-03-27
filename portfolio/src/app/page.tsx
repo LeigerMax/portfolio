@@ -5,6 +5,8 @@ import { WhoAmIOverlay, ParcoursOverlay } from "@/components/ui/AboutOverlay";
 import { ProjectGrid } from "@/components/ui/ProjectGrid";
 import { CertificatesOverlay } from "@/components/ui/CertificatesOverlay";
 import { ContactButtons } from "@/components/ui/ContactButtons";
+import { Hero } from "@/components/ui/Hero";
+import { SkillsSection } from "@/components/ui/SkillsSection";
 import { useEffect, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -130,78 +132,12 @@ export default function Home() {
 
       {/* UI Scroll Container */}
       <div className={`relative z-10 w-full transition-opacity duration-500 pointer-events-none ${isUIVisible ? "opacity-100" : "opacity-0"}`}>
-        {/* Sections... */}
-        <section className="h-screen flex flex-col items-center justify-center p-8 pointer-events-none">
-          <div className="bg-black/40 backdrop-blur-md p-12 border border-white/10 rounded-2xl pointer-events-auto text-center">
-            <h1 className="text-8xl font-black text-white mb-2 uppercase tracking-tighter italic">
-              Maxime Allemeersch
-            </h1>
-            <p className="text-2xl text-purple-400 font-mono uppercase tracking-[0.2em] mb-4">
-              Software Engineer
-            </p>
-            <p className="text-white/70 max-w-lg mx-auto mb-8 leading-relaxed">
-              Développeur passionné et polyvalent, spécialisé dans la création de solutions complètes.
-            </p>
-            <div className="animate-bounce text-white/50 font-mono text-sm uppercase tracking-widest">
-              Scrollez pour explorer mon espace
-            </div>
-          </div>
-        </section>
+        <Hero />
 
         <section id="whoami-section" className="h-screen pointer-events-none" />
         <section id="parcours-section" className="h-screen pointer-events-none" />
 
-        <section className="h-screen flex items-center justify-start p-20 pointer-events-none">
-          <div className="max-w-2xl bg-black/60 backdrop-blur-xl p-10 border border-white/10 rounded-3xl pointer-events-auto shadow-2xl">
-            <h2 className="text-5xl font-black text-white mb-6 uppercase italic tracking-tighter">La Bibliothèque des Compétences</h2>
-
-            <div className="grid grid-cols-2 gap-8 text-sm">
-              <div>
-                <h3 className="text-blue-400 font-bold uppercase mb-3 tracking-widest border-b border-blue-400/30 pb-1">Langages</h3>
-                <div className="flex flex-wrap gap-2">
-                  {["Java", "Python", "JavaScript", "TypeScript", "PHP", "C#", "Haskell"].map(s => (
-                    <span key={s} className="text-gray-300 bg-white/5 px-2 py-0.5 rounded border border-white/10">{s}</span>
-                  ))}
-                </div>
-              </div>
-              <div>
-                <h3 className="text-green-400 font-bold uppercase mb-3 tracking-widest border-b border-green-400/30 pb-1">Frameworks & Web</h3>
-                <div className="flex flex-wrap gap-2">
-                  {["React", "Node.js", "Next.js", "Angular", "jQuery", "Flutter", "HTML", "CSS"].map(s => (
-                    <span key={s} className="text-gray-300 bg-white/5 px-2 py-0.5 rounded border border-white/10">{s}</span>
-                  ))}
-                </div>
-              </div>
-              <div>
-                <h3 className="text-yellow-400 font-bold uppercase mb-3 tracking-widest border-b border-yellow-400/30 pb-1">Bases de données</h3>
-                <div className="flex flex-wrap gap-2">
-                  {["MySQL", "PostgreSQL"].map(s => (
-                    <span key={s} className="text-gray-300 bg-white/5 px-2 py-0.5 rounded border border-white/10">{s}</span>
-                  ))}
-                </div>
-              </div>
-              <div>
-                <h3 className="text-red-400 font-bold uppercase mb-3 tracking-widest border-b border-red-400/30 pb-1">Outils & Environnements</h3>
-                <div className="flex flex-wrap gap-2">
-                  {["Git", "GitHub", "Linux", "Docker", "Jira", "WordPress"].map(s => (
-                    <span key={s} className="text-gray-300 bg-white/5 px-2 py-0.5 rounded border border-white/10">{s}</span>
-                  ))}
-                </div>
-              </div>
-              <div className="col-span-2">
-                <h3 className="text-purple-400 font-bold uppercase mb-3 tracking-widest border-b border-purple-400/30 pb-1">Méthodologies & Systèmes</h3>
-                <div className="flex flex-wrap gap-2">
-                  {[
-                    "Agile", "Scrum", "OOP", "REST API", "Tailwind CSS",
-                    "Windows Server", "Administration réseau", "Packet Tracer"
-                  ].map(s => (
-                    <span key={s} className="text-gray-300 bg-white/5 px-2 py-0.5 rounded border border-white/10">{s}</span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <SkillsSection />
 
         <section id="certs-section" className="h-screen flex items-center justify-end p-20 pointer-events-none">
           <div className="max-w-md bg-black/40 backdrop-blur-md p-8 border border-white/10 rounded-2xl pointer-events-auto">

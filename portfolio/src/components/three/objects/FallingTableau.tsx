@@ -60,7 +60,7 @@ export default function FallingTableau({
       onPointerOut={() => (document.body.style.cursor = "auto")}
     >
       {/* Indicateur de clic si le tableau est encore accroché */}
-      {!hasFallen && <ClickIndicator position={[0, 0, 0.2]} scale={2} color="#a855f7" />}
+      {!hasFallen && <ClickIndicator position={[0, -1, 0.2]} scale={0.5} color="#a855f7" />}
 
       {/* Cadre du tableau */}
       <Box args={[4, 3, 0.1]} castShadow>
