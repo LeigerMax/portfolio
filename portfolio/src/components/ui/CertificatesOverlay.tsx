@@ -5,7 +5,7 @@ import { Certification, certifications, ExtraCertification, extraCertifications 
 import { Award, BookOpen, Gamepad2, GraduationCap, Server } from "lucide-react";
 
 const ITEMS_PER_PAGE = 4;
-const EXTRA_ITEMS_PER_PAGE = 6;
+const EXTRA_ITEMS_PER_PAGE = 4;
 
 // Icônes par émetteur
 function getIssuerIcon(issuer: string) {
@@ -44,47 +44,51 @@ export function CertificatesOverlay({ visible }: { visible: boolean }) {
   return (
     <div className="fixed inset-0 z-50 pointer-events-none flex items-center justify-center p-8">
       <div
-        className="max-w-4xl w-full pointer-events-auto bg-black/60 backdrop-blur-xl rounded-2xl border border-white/10 shadow-2xl p-10 animate-in fade-in duration-500"
+        className="max-w-6xl w-full pointer-events-auto bg-[#0d0d0d]/80 backdrop-blur-md rounded-xl border card-border shadow-2xl py-10 px-16 relative overflow-hidden animate-in fade-in duration-500"
         style={{ animation: "fadeSlideIn 0.5s ease-out" }}
       >
+        {/* Subtle texture overlay */}
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-paper-grain" />
+
         {/* Header */}
-        <div className="flex justify-between items-end mb-8">
+        <div className="relative z-10 flex justify-between items-end mb-12">
           <div>
-            <h2 className="text-5xl font-black text-white uppercase italic tracking-tighter">
-              Certifications
-            </h2>
-            <div className="h-1.5 w-20 bg-purple-500 mt-2 rounded-full" />
+            <div className="flex items-center gap-4 mb-2">
+              <div className="w-10 h-[1px] bg-white/20" />
+              <h2 className="text-3xl font-light text-white tracking-[0.2em] uppercase">
+                Certifications
+              </h2>
+            </div>
           </div>
-          <div className="text-sm text-white/40 font-mono">
-            {certifications.length} certificats
+          <div className="text-xs text-white/30 font-mono uppercase tracking-widest bg-white/[0.03] px-4 py-1.5 rounded-full border border-white/[0.05]">
+            {certifications.length} certifats
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+        <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 ">
           {current.map((cert: Certification, i: number) => (
             <div
               key={page * ITEMS_PER_PAGE + i}
-              className={`group relative bg-gradient-to-br ${getIssuerColor(cert.issuer)} border rounded-xl p-5 hover:scale-[1.02] transition-all duration-300`}
+              className={`group relative bg-white/[0.01] border card-border rounded-lg p-8 hover:bg-white/[0.03] transition-all duration-300`}
             >
-              {/* Icône + Badge */}
-              <div className="flex items-start gap-4">
-                <div className="text-3xl flex-shrink-0 mt-0.5">
+              <div className="flex items-start gap-5">
+                <div className="text-gray-400 group-hover:text-amber-200/60 transition-colors scale-110">
                   {getIssuerIcon(cert.issuer)}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-white font-bold text-sm leading-tight mb-1.5 line-clamp-2 pr-28">
+                  <h3 className="text-white font-bold text-base leading-tight mb-3 pr-24">
                     {cert.title}
                   </h3>
-                  <div className={`text-xs font-semibold ${getIssuerAccent(cert.issuer)} mb-2`}>
+                  <div className={`text-xs font-black uppercase tracking-widest ${getIssuerAccent(cert.issuer)} opacity-80 mb-4`}>
                     {cert.issuer}
                   </div>
-                  <p className="text-white/50 text-xs leading-relaxed line-clamp-2">
+                  <p className="text-gray-400 text-sm leading-relaxed line-clamp-2 font-medium">
                     {cert.description}
                   </p>
                 </div>
               </div>
               {/* Date badge */}
-              <div className="absolute top-5 right-5 text-[10px] font-mono text-white/30 uppercase tracking-wider bg-white/5 px-2 py-0.5 rounded-full">
+              <div className="absolute top-8 right-8 text-xs font-mono text-white/20 uppercase tracking-tighter">
                 {cert.date}
               </div>
             </div>
@@ -93,23 +97,23 @@ export function CertificatesOverlay({ visible }: { visible: boolean }) {
 
         {/* Pagination Principale */}
         {totalPages > 1 && (
-          <div className="flex items-center justify-center gap-3">
+          <div className="relative z-10 flex items-center justify-center gap-6">
             <button
               onClick={() => setPage((p: number) => Math.max(0, p - 1))}
               disabled={page === 0}
-              className="px-4 py-1.5 bg-white/5 border border-white/10 text-white rounded-lg hover:bg-purple-500/20 hover:border-purple-500/30 transition-all disabled:opacity-20 disabled:cursor-not-allowed cursor-pointer text-xs font-bold"
+              className="px-6 py-2.5 bg-white/[0.12] border border-white/30 text-white/90 rounded-lg hover:bg-white/[0.2] hover:text-white transition-all disabled:opacity-30 cursor-pointer text-sm font-bold"
             >
               ←
             </button>
 
-            <div className="flex gap-1">
+            <div className="flex gap-3">
               {Array.from({ length: totalPages }).map((_, i) => (
                 <button
                   key={i}
                   onClick={() => setPage(i)}
-                  className={`w-6 h-6 rounded-md text-[10px] font-bold transition-all cursor-pointer ${i === page
-                    ? "bg-purple-500 text-black"
-                    : "bg-white/5 text-white/50 hover:bg-white/10"
+                  className={`w-10 h-10 rounded-lg text-xs font-bold transition-all cursor-pointer border ${i === page
+                    ? "bg-white border-white text-black"
+                    : "bg-white/[0.02] border-white/10 text-white/30 hover:text-white hover:border-white/20"
                     }`}
                 >
                   {i + 1}
@@ -120,7 +124,7 @@ export function CertificatesOverlay({ visible }: { visible: boolean }) {
             <button
               onClick={() => setPage((p: number) => Math.min(totalPages - 1, p + 1))}
               disabled={page === totalPages - 1}
-              className="px-4 py-1.5 bg-white/5 border border-white/10 text-white rounded-lg hover:bg-purple-500/20 hover:border-purple-500/30 transition-all disabled:opacity-20 disabled:cursor-not-allowed cursor-pointer text-xs font-bold"
+              className="px-6 py-2.5 bg-white/[0.12] border border-white/30 text-white/90 rounded-lg hover:bg-white/[0.2] hover:text-white transition-all disabled:opacity-30 cursor-pointer text-sm font-bold"
             >
               →
             </button>
@@ -128,32 +132,34 @@ export function CertificatesOverlay({ visible }: { visible: boolean }) {
         )}
 
         {/* Formations Optionnelles */}
-        <div className="mt-8 pt-6 border-t border-white/5">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-2">
-              <BookOpen size={18} className="text-purple-400" />
-              <h3 className="text-sm font-bold text-white/70 uppercase tracking-widest">
-                Autres Formations & Cours
+        <div className="relative z-10 mt-0 pt-6 border-t card-border">
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center gap-5 pl-4">
+              <div className="p-2 bg-white/[0.03] border card-border rounded-lg text-gray-400">
+                <BookOpen size={22} className="text-gray-400 hover:text-amber-200/60 transition-colors" />
+              </div>
+              <h3 className="text-sm font-black text-gray-400 uppercase tracking-[0.3em]">
+                Archives & Études Complémentaires
               </h3>
             </div>
-            
+
             {/* Pagination Optionnelle */}
             {totalExtraPages > 1 && (
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-4 px-4">
                 <button
                   onClick={() => setExtraPage((p) => Math.max(0, p - 1))}
                   disabled={extraPage === 0}
-                  className="p-1.5 bg-white/5 border border-white/10 text-white rounded-md hover:bg-purple-500/20 disabled:opacity-20 cursor-pointer"
+                  className="p-1 px-5 bg-white/[0.12] border border-white/30 text-white/90 rounded-md hover:bg-white/[0.2] hover:text-white disabled:opacity-30 cursor-pointer transition-all font-bold"
                 >
                   ←
                 </button>
-                <span className="text-[10px] font-mono text-white/40">
+                <span className="text-[10px] font-mono text-white/20 uppercase tracking-widest">
                   {extraPage + 1} / {totalExtraPages}
                 </span>
                 <button
                   onClick={() => setExtraPage((p) => Math.min(totalExtraPages - 1, p + 1))}
                   disabled={extraPage === totalExtraPages - 1}
-                  className="p-1.5 bg-white/5 border border-white/10 text-white rounded-md hover:bg-purple-500/20 disabled:opacity-20 cursor-pointer"
+                  className="p-1 px-5 bg-white/[0.12] border border-white/30 text-white/90 rounded-md hover:bg-white/[0.2] hover:text-white disabled:opacity-30 cursor-pointer transition-all font-bold"
                 >
                   →
                 </button>
@@ -161,17 +167,17 @@ export function CertificatesOverlay({ visible }: { visible: boolean }) {
             )}
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-4 py-2">
             {currentExtra.map((extra: ExtraCertification, i: number) => (
-              <div 
+              <div
                 key={extraPage * EXTRA_ITEMS_PER_PAGE + i}
-                className="bg-white/5 border border-white/10 rounded-lg p-3 hover:bg-white/10 transition-colors group min-h-[80px] flex flex-col justify-center"
+                className="bg-white/[0.01] border card-border rounded-lg p-6 hover:bg-white/[0.03] hover:border-white/20 transition-all group flex flex-col justify-center min-h-[90px]"
               >
-                <div className="text-[11px] font-bold text-purple-400/80 mb-1.5 flex justify-between items-center bg-purple-500/5 px-2 py-0.5 rounded-full">
-                  <span>{extra.issuer}</span>
-                  <span className="text-[10px] text-white/30 font-mono italic">{extra.date}</span>
+                <div className="flex justify-between items-center mb-3">
+                  <span className="text-[10px] font-black uppercase tracking-widest text-amber-200/40">{extra.issuer}</span>
+                  <span className="text-[10px] text-white/10 font-mono tracking-tighter">{extra.date}</span>
                 </div>
-                <h4 className="text-white/90 text-[13px] font-bold leading-tight group-hover:text-white transition-colors line-clamp-2 px-1">
+                <h4 className="text-gray-300 text-sm font-medium leading-snug group-hover:text-amber-50 transition-colors">
                   {extra.title}
                 </h4>
               </div>

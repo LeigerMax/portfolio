@@ -11,8 +11,8 @@ export const projects: Project[] = [
   },
   {
     title: "DiscoverPicture",
-    description: "Application web de partage d'albums photo sur le principe d'une chasse au trésor via QR codes.",
-    technologies: ["Web", "QR Code API", "Interactivité"],
+    description: "DiscoverPicture transforme le partage de photos en une chasse au trésor numérique interactive. Plutôt que d'envoyer de simples fichiers, créez des albums où chaque souvenir est verrouillé derrière un QR code secret. Une expérience ludique, sécurisée et entièrement locale pour redécouvrir vos moments précieux.\n\nPoints clés :\n• Concept de Chasse au Trésor : Système de déverrouillage de photos par scan de QR codes uniques.\n• Confidentialité Totale : Architecture 100% locale, aucune donnée n'est envoyée ou stockée sur le cloud.\n• Sécurité Native : Protection intégrée contre les captures d'écran pour préserver l'intimité des souvenirs.\n• Mode Hors-ligne : Fonctionnement complet sans connexion internet pour le scan et la visualisation.\n• UI Material Design 3 : Interface moderne et intuitive utilisant les derniers standards de design de Google.",
+    technologies: ["Flutter", "Dart", "Material Design 3", "QR Code API", "Local Storage", "Security"],
     images: ["/projects/discoverpicture.png"],
     links: { github: "https://github.com/LeigerMax/DiscoverPicture", live: "https://leigermax.github.io/discoverpicture-website/" }
   },
@@ -21,6 +21,7 @@ export const projects: Project[] = [
     description: "Jeu interactif pour seniors utilisant la caméra du PC pour transformer le corps en manette.",
     technologies: ["Computer Vision", "Interactivité", "UX Senior", "C#", "Unity", "Python", "MediaPipe"],
     images: ["/projects/motion-party.png"],
+    video: "https://www.youtube.com/watch?v=tMnubdURroY",
     links: { github: "https://github.com/LeigerMax/Motion-Party", live: "https://www.youtube.com/watch?v=tMnubdURroY" }
   },
   {
@@ -35,7 +36,7 @@ export const projects: Project[] = [
     description: "Nexus est un bot multifonction conçu pour dynamiser les interactions entre les membres d'un serveur Discord. Alliant divertissement et outils d'administration, il se distingue par une architecture robuste orientée DevOps.\n\nPoints clés :\n• Engagement Communautaire : Plus de 30 commandes de jeux (roulette russe, dés, pendu, bataille navale, oxo) et un système de malédiction poussé pour renforcer l'interaction.\n• Infrastructure & Keep-Alive : Serveur Express.js intégré pour assurer un maintien en ligne 24/7 sur des plateformes comme Render ou Replit.\n• Qualité du Code : Utilisation de Jest pour les tests unitaires et ESLint pour l'analyse statique, garantissant une grande stabilité.\n• CI/CD : Automatisation complète des tests et du linting via GitHub Actions.",
     technologies: ["Python", "Render", "Express.js", "Jest", "ESLint", "GitHub Actions", "Infrastructure & DevOps"],
     images: ["/projects/nexus1.jpg", "/projects/nexus2.jpg", "/projects/nexus3.jpg"],
-    links: { github: "#", live: "#" }
+    links: { github: "https://github.com/LeigerMax/Discord_Bot", live: "#" }
   },
   {
     title: "Belle Ariane",
@@ -74,5 +75,23 @@ export const projects: Project[] = [
     technologies: ["React Native", "Django", "Django REST Framework", "Docker", "TanStack", "JWT", "Agile", "DevOps"],
     images: ["/projects/go4success.jpg"],
     links: { github: "https://github.com/LeigerMax/Go4Success", live: "#" }
+  },
+  {
+    title: "Interfaces incarnées et augmentées - Kinect Kata",
+    description: "Système de validation de position basé sur l'angle pour le KATA dans l'art martial de l'aïkido. Les angles des os du haut du corps des KATA prédéfinis sont enregistrés dans une liste. Le système utilise les capteurs Kinect pour estimer les coordonnées des articulations du corps et calculer l'angle des os. Si les angles correspondent à la position testée, celle-ci est validée.\n\nPoints clés :\n• Kinect SDK 2.0 : Utilisation intensive du SDK pour le suivi squelettique en temps réel.\n• Validation Biométrique : Algorithme de calcul d'angles pour valider la justesse des mouvements d'aïkido.\n• Optimisation : Travail sur la reconnaissance malgré les vêtements amples typiques des arts martiaux.",
+    technologies: ["C#", "XML", "Kinect SDK 2.0"],
+    images: ["/projects/kinect-kata.png"],
+    links: {
+      github: "https://github.com/LeigerMax/UNAMUR-INFOM435-Projet_Kinect_Kata",
+      live: "#",
+      pdf: "/docs/kinect-kata-research.pdf"
+    }
+  },
+  {
+    title: "E-Anacarde",
+    description: "Projet universitaire d'envergure destiné au marché de l'anacarde au Bénin, permettant la traçabilité complète des noix de cajou de la récolte à la vente. La plateforme gère deux systèmes de transaction : achat direct et enchères, tout en offrant des outils de gestion avancés pour les coopératives et les stocks.\n\nPoints clés :\n• Gestion Complète : Modules dédiés aux champs, stocks, sacs, coopératives et vente (market).\n• Dashboard Admin : Tableau de bord poussé pour une gestion globale du système et des utilisateurs.\n• Analyse Rigoureuse : Conception basée sur des cas d'utilisation, diagrammes de séquence et d'activité avec documentation API complète.\n• Internationalisation : Support multilingue et design responsive adapté aux contraintes locales.\n• Stack Moderne : Architecture robuste avec Spring Boot, Angular et PostgreSQL, orchestrée par Docker.",
+    technologies: ["Spring Boot", "Angular", "PostgreSQL", "Docker", "UML", "Agile", "Internationalisation", "Keycloak "],
+    images: ["/projects/e-anacarde1.jpg", "/projects/e-anacarde2.png", "/projects/e-anacarde3.jpg", "/projects/e-anacarde4.jpg"],
+    links: { github: "https://github.com/LeigerMax/E-Anacarde", live: "#" }
   },
 ];
