@@ -101,6 +101,9 @@ export default function Home() {
         onLeaveBack: () => setShowContact(false),
       });
 
+      // Snap Trigger
+      // Supprimé au profit du CSS Scroll Snapping Proximity pour un effet 'aimant' plus naturel
+      
       ScrollTrigger.refresh();
     }, 100);
 
@@ -134,33 +137,42 @@ export default function Home() {
       <div className={`relative z-10 w-full transition-opacity duration-500 pointer-events-none ${isUIVisible ? "opacity-100" : "opacity-0"}`}>
         <Hero />
 
-        <section id="whoami-section" className="h-screen pointer-events-none" />
-        <section id="parcours-section" className="h-screen pointer-events-none" />
+        <section id="whoami-section" className="h-screen pointer-events-none snap-center" />
+        <section id="parcours-section" className="h-screen pointer-events-none snap-center" />
 
         <SkillsSection />
+        
+        <section id="certs-section" className="h-screen pointer-events-none snap-center" />
 
-        <section id="certs-section" className="h-screen flex items-center justify-end p-20 pointer-events-none">
-          <div className="max-w-md bg-black/40 backdrop-blur-md p-8 border border-white/10 rounded-2xl pointer-events-auto">
-            <h2 className="text-4xl font-black text-white mb-4 uppercase italic">Certifications</h2>
-            <p className="text-gray-300 text-lg leading-relaxed">
-              Formations certifiantes en conteneurisation (Red Hat OpenShift), développement web moderne et création interactive avec Unity.
-            </p>
-          </div>
-        </section>
-
-        <section id="projects-section" className="h-screen flex items-center justify-center p-8 pointer-events-none">
+        <section id="projects-section" className="h-screen flex items-center justify-center p-8 pointer-events-none snap-center">
           <div className={`w-full flex justify-center transition-all duration-700 transform ${showProjects ? 'opacity-100 scale-100 pointer-events-auto' : 'opacity-0 scale-95 pointer-events-none'}`}>
             <ProjectGrid />
           </div>
         </section>
 
-        <section id="contact-section" className="h-[100vh] flex items-center justify-end p-20 pointer-events-none">
-          <div className={`max-w-md bg-black/60 backdrop-blur-xl p-10 border border-white/10 rounded-3xl transition-all duration-700 transform ${showContact ? 'opacity-100 translate-x-0 pointer-events-auto' : 'opacity-0 translate-x-10 pointer-events-none'}`}>
-            <h2 className="text-4xl font-black text-white mb-6 uppercase italic">Restons en contact</h2>
-            <p className="text-gray-300 text-lg mb-8">
-              Prêt à discuter de votre prochain projet ou d'une opportunité ?
-            </p>
-            <ContactButtons />
+        <section id="contact-section" className="h-[100vh] flex items-center justify-end p-20 pointer-events-none snap-center">
+          <div className={`max-w-md w-full pointer-events-auto bg-[#0d0d0d]/80 backdrop-blur-md border card-border rounded-xl p-12 workspace-shadow relative overflow-hidden transition-all duration-700 transform ${showContact ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
+            {/* Subtle texture overlay */}
+            <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-paper-grain" />
+
+            <div className="relative z-10">
+              <div className="flex items-center gap-4 mb-8">
+                <div className="w-10 h-[1px] bg-white/20" />
+                <h2 className="text-sm font-black text-gray-400 uppercase tracking-[0.3em]">
+                  Contact
+                </h2>
+              </div>
+              
+              <h3 className="text-2xl font-light text-white uppercase tracking-[0.15em] mb-6 leading-tight">
+                Restons en <span className="text-amber-200/60">contact</span>
+              </h3>
+              
+              <p className="text-gray-500 text-sm mb-10 leading-relaxed font-medium">
+                Prêt à discuter de votre prochain projet ou d'une opportunité ?
+              </p>
+              
+              <ContactButtons />
+            </div>
           </div>
         </section>
       </div>

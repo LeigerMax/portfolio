@@ -2,43 +2,53 @@
 
 import { skillCategories, SkillCategory } from "@/data/skills";
 
-const colorClasses: Record<string, { accent: string; border: string }> = {
-  blue: { accent: "text-blue-400", border: "border-blue-400/30" },
-  green: { accent: "text-green-400", border: "border-green-400/30" },
-  yellow: { accent: "text-yellow-400", border: "border-yellow-400/30" },
-  red: { accent: "text-red-400", border: "border-red-400/30" },
-  purple: { accent: "text-purple-400", border: "border-purple-400/30" },
+const colorClasses: Record<string, { accent: string; border: string; bg: string }> = {
+  blue: { accent: "text-blue-300", border: "border-blue-300/20", bg: "bg-blue-300/5" },
+  green: { accent: "text-emerald-300", border: "border-emerald-300/20", bg: "bg-emerald-300/5" },
+  yellow: { accent: "text-amber-300", border: "border-amber-300/20", bg: "bg-amber-300/5" },
+  red: { accent: "text-orange-300", border: "border-orange-300/20", bg: "bg-orange-300/5" },
+  purple: { accent: "text-yellow-200/60", border: "border-yellow-200/10", bg: "bg-yellow-200/5" },
+  cyan: { accent: "text-teal-300", border: "border-teal-300/20", bg: "bg-teal-300/5" },
 };
 
 export function SkillsSection() {
   return (
-    <section className="h-screen flex items-center justify-start p-20 pointer-events-none">
-      <div className="max-w-2xl bg-black/60 backdrop-blur-xl p-10 border border-white/10 rounded-3xl pointer-events-auto shadow-2xl">
-        <h2 className="text-5xl font-black text-white mb-6 uppercase italic tracking-tighter">
-          La Bibliothèque des Compétences
-        </h2>
+    <section className="h-screen flex items-center justify-start p-20 pointer-events-none snap-center">
+      <div className="max-w-4xl w-full bg-[#0d0d0d]/80 backdrop-blur-md border card-border rounded-xl pointer-events-auto workspace-shadow py-8 px-12 relative overflow-hidden">
+        {/* Subtle texture overlay */}
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-paper-grain" />
+        
+        <div className="relative z-10">
+          <div className="flex items-center gap-4 mb-10">
+            <div className="w-12 h-[1px] bg-white/20" />
+            <h2 className="text-4xl font-light text-white tracking-[0.2em] uppercase">
+              Compétences
+            </h2>
+          </div>
 
-        <div className="grid grid-cols-2 gap-8 text-sm">
-          {skillCategories.map((category) => (
-            <div 
-              key={category.title} 
-              className={category.title === "Méthodologies & Systèmes" ? "col-span-2" : ""}
-            >
-              <h3 className={`${colorClasses[category.color].accent} font-bold uppercase mb-3 tracking-widest border-b ${colorClasses[category.color].border} pb-1`}>
-                {category.title}
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {category.skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="text-gray-300 bg-white/5 px-2 py-0.5 rounded border border-white/10"
-                  >
-                    {skill}
-                  </span>
-                ))}
+          <div className="grid grid-cols-2 gap-x-16 gap-y-12 text-base">
+            {skillCategories.map((category) => (
+              <div 
+                key={category.title} 
+                className="group"
+              >
+                <h3 className={`${colorClasses[category.color].accent} text-xs font-black uppercase mb-5 tracking-[0.3em] flex items-center gap-3`}>
+                  <span className={`w-2 h-2 rounded-full ${colorClasses[category.color].bg} border ${colorClasses[category.color].border}`} />
+                  {category.title}
+                </h3>
+                <div className="flex flex-wrap gap-3">
+                  {category.skills.map((skill) => (
+                    <span
+                      key={skill}
+                      className="text-gray-300 text-sm font-medium tracking-wide bg-white/[0.03] px-3 py-1.5 rounded-sm border border-white/[0.08] group-hover:border-white/20 transition-colors"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

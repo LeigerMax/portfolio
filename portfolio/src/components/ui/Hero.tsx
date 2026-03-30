@@ -2,7 +2,7 @@
 
 export function Hero() {
   return (
-    <section className="h-screen flex flex-col items-center justify-center p-8 pointer-events-none">
+    <section className="h-screen flex flex-col items-center justify-center p-8 pointer-events-none snap-center">
       <div className="bg-black/40 backdrop-blur-md p-12 border border-white/10 rounded-2xl pointer-events-auto text-center">
         <h1 className="text-8xl font-black text-white mb-2 uppercase tracking-tighter italic">
           Maxime Allemeersch

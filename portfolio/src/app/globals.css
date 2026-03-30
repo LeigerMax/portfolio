@@ -3,6 +3,16 @@
 :root {
   --background: #000;
   --foreground: #fff;
+  
+  /* Library Palette */
+  --paper: #fdfbf7;
+  --ink: #1a1b1e;
+  --wood-dark: #2a1b0e;
+  --accent-sage: #8da399;
+  --accent-terracotta: #c37b60;
+  --accent-slate: #5e7ba1;
+  --accent-ochre: #d09d5a;
+  --accent-gold: #b89c6d;
 }
 
 body {
@@ -22,3 +32,21 @@ canvas {
 main {
   min-height: 400vh;
 }
+
+/* Texture de papier subtile */
+.bg-paper-grain {
+  background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+}
+
+.card-border {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.workspace-shadow {
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+}

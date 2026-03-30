@@ -16,12 +16,14 @@ export function ContactButtons() {
         <a
           key={index}
           href={contact.href}
-          className="flex items-center gap-4 p-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl transition-all group"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-5 p-5 bg-white/[0.02] border card-border rounded-lg transition-all group hover:bg-white/[0.04] hover:border-white/20"
         >
-          <span className="text-purple-400 group-hover:scale-110 transition-transform">
+          <div className="p-2.5 bg-white/[0.03] border card-border rounded-lg text-gray-500 group-hover:text-amber-200/60 transition-colors">
             {contact.icon}
-          </span>
-          <span className="text-white font-medium">{contact.label}</span>
+          </div>
+          <span className="text-gray-400 font-bold uppercase tracking-[0.2em] text-[10px] group-hover:text-white transition-colors">{contact.label}</span>
         </a>
       ))}
     </div>

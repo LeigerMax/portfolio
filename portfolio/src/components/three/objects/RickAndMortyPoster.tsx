@@ -1,16 +1,15 @@
 "use client";
 
-import { Box, Text } from "@react-three/drei";
+import { Box, useTexture } from "@react-three/drei";
 
-export default function RickAndMortyPoster({ position = [10, 10, -14.8], rotation = [0, 0, 0] }: { position?: [number, number, number], rotation?: [number, number, number] } = {}) {
+export default function MyDrawingPoster({ position = [9, 7.5, -14.8], rotation = [0, 0, 0] }: { position?: [number, number, number], rotation?: [number, number, number] } = {}) {
+  const texture = useTexture("/my_drawing.jpg");
+
   return (
     <group position={position} rotation={rotation}>
-      <Box args={[4, 5, 0.1]}>
-        <meshStandardMaterial color="#32cd32" />
+      <Box args={[4, 2, 0.1]}>
+        <meshStandardMaterial map={texture} />
       </Box>
-      <Text position={[0, 0, 0.1]} fontSize={0.35} color="#fff">
-        RICK & MORTY
-      </Text>
     </group>
   );
 }

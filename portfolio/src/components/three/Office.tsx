@@ -16,7 +16,7 @@ import Sofa from "./objects/Sofa";
 import Window from "./objects/Window";
 import CertsBoard from "./objects/CertsBoard";
 import PhotoFrames from "./objects/PhotoFrames";
-import RickAndMortyPoster from "./objects/RickAndMortyPoster";
+import MyDrawingPoster from "./objects/RickAndMortyPoster";
 import BackendServers from "./objects/BackendServers";
 import FallingTableau from "./objects/FallingTableau";
 
@@ -55,7 +55,7 @@ export function Office() {
         <PhotoFrames />
 
         {/* Posters Rick & Morty & Simpsons */}
-        <RickAndMortyPoster />
+        <MyDrawingPoster />
         <group position={[-9, 10, -14.8]}>
           <SimpsonsPoster />
         </group>

@@ -5,10 +5,10 @@ import { projects } from "@/data/projects";
 import { ProjectModal } from "./ProjectModal";
 import { Project } from "@/types";
 
-export function ProjectGrid() {
+export function ProjectGrid({ isMinimal = false }: { isMinimal?: boolean }) {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const projectsPerPage = 6;
+  const projectsPerPage = isMinimal ? 3 : 3; // On garde 3 car c'est déjà optimisé
 
   const totalPages = Math.ceil(projects.length / projectsPerPage);
   const startIndex = (currentPage - 1) * projectsPerPage;
@@ -27,62 +27,70 @@ export function ProjectGrid() {
   };
 
   return (
-    <div id="projects" className="w-full max-w-6xl px-4">
-      {/* Titre */}
-      <div className="mb-10">
-        <h2 className="text-6xl font-black text-white uppercase italic tracking-tighter">Mes Projets</h2>
-        <div className="h-2 w-24 bg-purple-500 mt-2"></div>
-      </div>
+    <div id="projects" className={`w-full ${isMinimal ? "max-w-[1400px] pt-4" : "max-w-[1400px] pt-20"} px-4`}>
+      {/* Titre - Uniquement si PAS minimal */}
+      {!isMinimal && (
+        <div className="mb-16 flex items-center gap-4">
+          <div className="w-12 h-[1px] bg-white/20" />
+          <h2 className="text-3xl font-light text-white tracking-[0.2em] uppercase">
+            Projets Sélectionnés
+          </h2>
+        </div>
+      )}
 
       {/* Grille de projets */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className={`grid grid-cols-1 md:grid-cols-3 ${isMinimal ? "gap-8" : "gap-12"}`}>
         {currentProjects.map((project, idx) => (
           <div
             key={idx}
-            className="group bg-black/50 backdrop-blur-md border border-white/10 rounded-2xl overflow-hidden hover:border-purple-500/40 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_60px_-15px_rgba(168,85,247,0.15)] flex flex-col"
+            className="group bg-[#0d0d0d]/80 backdrop-blur-md border card-border rounded-xl overflow-hidden hover:border-white/20 transition-all duration-500 workspace-shadow flex flex-col relative"
           >
+            {/* Subtle texture overlay */}
+            <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-paper-grain" />
+
             {/* Image du projet */}
-            <div className="relative h-44 bg-gradient-to-br from-gray-800 to-gray-900 overflow-hidden">
+            <div className="relative h-56 bg-[#151515] overflow-hidden border-b card-border">
               <img
                 src={project.images[0]}
                 alt={project.title}
-                className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-700 grayscale-[20%] group-hover:grayscale-0"
                 onError={(e) => {
-                  // Fallback si l'image n'existe pas encore
                   (e.target as HTMLImageElement).style.display = 'none';
                 }}
               />
-              {/* Overlay dégradé */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d0d]/80 via-transparent to-transparent opacity-60" />
             </div>
 
             {/* Contenu */}
-            <div className="p-6 flex flex-col flex-1">
+            <div className="p-10 flex flex-col flex-1 relative z-10">
               {/* Titre */}
-              <h3 className="text-xl font-black text-white uppercase tracking-tight mb-2 group-hover:text-purple-400 transition-colors">
+              <h3 className="text-xl font-bold text-white tracking-tight mb-5 group-hover:text-amber-200/80 transition-colors">
                 {project.title}
               </h3>
 
               {/* Technos */}
-              <div className="flex flex-wrap gap-1.5 mb-3">
+              <div className="flex flex-wrap gap-2.5 mb-8">
                 {project.technologies.map((t: string) => (
-                  <span key={t} className="text-[10px] uppercase font-bold tracking-wider text-purple-400/80 bg-purple-500/10 border border-purple-500/20 px-2 py-0.5 rounded-full">
+                  <span key={t} className="text-[10px] uppercase font-black tracking-[0.2em] text-gray-400 bg-white/[0.05] border border-white/[0.1] px-3 py-1 rounded-sm">
                     {t}
                   </span>
                 ))}
               </div>
 
               {/* Description courte */}
-              <p className="text-sm text-gray-400 leading-relaxed line-clamp-2 mb-5 flex-1">
+              <p className="text-sm text-gray-400 leading-relaxed line-clamp-2 mb-10 flex-1 font-medium">
                 {project.description}
               </p>
 
               {/* Bouton Découvrir */}
               <button
                 onClick={() => setSelectedIndex(startIndex + idx)}
-                className="w-full py-2.5 bg-white/5 border border-white/10 text-white text-sm font-bold uppercase tracking-wider rounded-xl hover:bg-purple-500 hover:border-purple-500 hover:text-black transition-all duration-300 cursor-pointer"
+                className="group/btn relative w-full py-4 bg-white/[0.02] border border-white/10 text-white text-xs font-black uppercase tracking-[0.25em] rounded-lg hover:bg-white hover:text-black transition-all duration-300 cursor-pointer overflow-hidden"
               >
-                Découvrir →
+                <span className="relative z-10 flex items-center justify-center gap-2">
+                  Détails du projet
+                  <span className="group-hover/btn:translate-x-1 transition-transform">→</span>
+                </span>
               </button>
             </div>
           </div>
@@ -91,29 +99,23 @@ export function ProjectGrid() {
 
       {/* Pagination Controls */}
       {totalPages > 1 && (
-        <div className="flex justify-center items-center gap-4 mt-12">
+        <div className="flex justify-center items-center gap-6 mt-16">
           <button
-            onClick={() => {
-              setCurrentPage(p => Math.max(1, p - 1));
-              document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
-            }}
+            onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
             disabled={currentPage === 1}
-            className="p-3 bg-white/5 border border-white/10 rounded-xl text-white disabled:opacity-20 hover:bg-purple-500/20 hover:border-purple-500/30 transition-all cursor-pointer"
+            className="p-3 bg-[#0d0d0d] border card-border rounded-xl text-white/40 disabled:opacity-5 hover:text-white hover:border-white/20 transition-all cursor-pointer"
           >
             ←
           </button>
 
-          <div className="flex gap-2">
+          <div className="flex gap-3">
             {Array.from({ length: totalPages }).map((_, i) => (
               <button
                 key={i}
-                onClick={() => {
-                  setCurrentPage(i + 1);
-                  document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
-                }}
+                onClick={() => setCurrentPage(i + 1)}
                 className={`w-10 h-10 rounded-xl font-bold transition-all cursor-pointer border ${currentPage === i + 1
-                  ? "bg-purple-500 border-purple-500 text-black shadow-[0_0_20px_rgba(168,85,247,0.4)]"
-                  : "bg-white/5 border-white/10 text-white hover:bg-white/10"
+                  ? "bg-white border-white text-black workspace-shadow"
+                  : "bg-[#0d0d0d] border card-border text-white/40 hover:text-white hover:border-white/20"
                   }`}
               >
                 {i + 1}
@@ -122,12 +124,9 @@ export function ProjectGrid() {
           </div>
 
           <button
-            onClick={() => {
-              setCurrentPage(p => Math.min(totalPages, p + 1));
-              document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
-            }}
+            onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
             disabled={currentPage === totalPages}
-            className="p-3 bg-white/5 border border-white/10 rounded-xl text-white disabled:opacity-20 hover:bg-purple-500/20 hover:border-purple-500/30 transition-all cursor-pointer"
+            className="p-3 bg-[#0d0d0d] border card-border rounded-xl text-white/40 disabled:opacity-5 hover:text-white hover:border-white/20 transition-all cursor-pointer"
           >
             →
           </button>
