@@ -53,7 +53,7 @@ const Reveal = ({ children, id, className = "" }: { children: React.ReactNode, i
 
 export function MobilePortfolio() {
   return (
-    <div className="relative z-10 w-full min-h-screen px-4 pb-20">
+    <div className="relative z-10 w-full min-h-screen px-4 pb-20 pointer-events-auto">
       {/* 
         Unified Mobile "Cadre" (Frame) 
         This single container holds all content with a consistent background and blur.
