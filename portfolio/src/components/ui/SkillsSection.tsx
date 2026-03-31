@@ -11,46 +11,52 @@ const colorClasses: Record<string, { accent: string; border: string; bg: string 
   cyan: { accent: "text-teal-300", border: "border-teal-300/20", bg: "bg-teal-300/5" },
 };
 
-export function SkillsSection() {
-  return (
-    <section className="h-screen flex items-center justify-start p-20 pointer-events-none snap-center">
-      <div className="max-w-4xl w-full bg-[#0d0d0d]/80 backdrop-blur-md border card-border rounded-xl pointer-events-auto workspace-shadow py-8 px-12 relative overflow-hidden">
-        {/* Subtle texture overlay */}
-        <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-paper-grain" />
-        
-        <div className="relative z-10">
-          <div className="flex items-center gap-4 mb-10">
-            <div className="w-12 h-[1px] bg-white/20" />
-            <h2 className="text-4xl font-light text-white tracking-[0.2em] uppercase">
-              Compétences
-            </h2>
-          </div>
+export function SkillsSection({ isInline = false }: { isInline?: boolean }) {
+  const content = (
+    <div className={`w-full pointer-events-auto relative overflow-hidden ${isInline ? "px-2" : "max-w-4xl bg-[#0d0d0d]/80 backdrop-blur-md border card-border rounded-xl workspace-shadow py-8 px-6 md:px-12"}`}>
+      {/* Subtle texture overlay - only on non-inline */}
+      {!isInline && <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-paper-grain" />}
+      
+      <div className="relative z-10">
+        <div className={`flex items-center gap-4 ${isInline ? "mb-6" : "mb-10"}`}>
+          <div className={`${isInline ? "w-8" : "w-12"} h-[1px] bg-white/20`} />
+          <h2 className={`${isInline ? "text-sm" : "text-xl md:text-4xl"} font-light text-white tracking-[0.2em] uppercase`}>
+            Compétences
+          </h2>
+        </div>
 
-          <div className="grid grid-cols-2 gap-x-16 gap-y-12 text-base">
-            {skillCategories.map((category) => (
-              <div 
-                key={category.title} 
-                className="group"
-              >
-                <h3 className={`${colorClasses[category.color].accent} text-xs font-black uppercase mb-5 tracking-[0.3em] flex items-center gap-3`}>
-                  <span className={`w-2 h-2 rounded-full ${colorClasses[category.color].bg} border ${colorClasses[category.color].border}`} />
-                  {category.title}
-                </h3>
-                <div className="flex flex-wrap gap-3">
-                  {category.skills.map((skill) => (
-                    <span
-                      key={skill}
-                      className="text-gray-300 text-sm font-medium tracking-wide bg-white/[0.03] px-3 py-1.5 rounded-sm border border-white/[0.08] group-hover:border-white/20 transition-colors"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
+        <div className={`grid grid-cols-1 md:grid-cols-2 ${isInline ? "gap-x-8 gap-y-6" : "gap-x-16 gap-y-8 md:gap-y-12 text-base"}`}>
+          {skillCategories.map((category) => (
+            <div 
+              key={category.title} 
+              className="group"
+            >
+              <h3 className={`${colorClasses[category.color].accent} ${isInline ? "text-[10px]" : "text-xs"} font-black uppercase ${isInline ? "mb-3" : "mb-5"} tracking-[0.3em] flex items-center gap-3`}>
+                <span className={`${isInline ? "w-1.5 h-1.5" : "w-2 h-2"} rounded-full ${colorClasses[category.color].bg} border ${colorClasses[category.color].border}`} />
+                {category.title}
+              </h3>
+              <div className={`flex flex-wrap ${isInline ? "gap-2" : "gap-3"}`}>
+                {category.skills.map((skill) => (
+                  <span
+                    key={skill}
+                    className={`${isInline ? "text-[11px] px-2 py-1" : "text-sm font-medium tracking-wide bg-white/[0.03] px-3 py-1.5"} text-gray-300 rounded-sm border border-white/[0.08] group-hover:border-white/20 transition-colors`}
+                  >
+                    {skill}
+                  </span>
+                ))}
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
+    </div>
+  );
+
+  if (isInline) return content;
+
+  return (
+    <section className="h-screen flex items-center justify-center md:justify-start p-6 md:p-20 pointer-events-none snap-center">
+      {content}
     </section>
   );
 }

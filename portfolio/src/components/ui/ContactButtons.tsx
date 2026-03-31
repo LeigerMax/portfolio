@@ -18,12 +18,12 @@ export function ContactButtons() {
           href={contact.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-5 p-5 bg-white/[0.02] border card-border rounded-lg transition-all group hover:bg-white/[0.04] hover:border-white/20"
+          className="flex items-center gap-3 md:gap-5 p-4 md:p-5 bg-white/[0.02] border card-border rounded-lg transition-all group hover:bg-white/[0.04] hover:border-white/20"
         >
-          <div className="p-2.5 bg-white/[0.03] border card-border rounded-lg text-gray-500 group-hover:text-amber-200/60 transition-colors">
+          <div className="p-2 md:p-2.5 bg-white/[0.03] border card-border rounded-lg text-gray-500 group-hover:text-amber-200/60 transition-colors scale-90 md:scale-100">
             {contact.icon}
           </div>
-          <span className="text-gray-400 font-bold uppercase tracking-[0.2em] text-[10px] group-hover:text-white transition-colors">{contact.label}</span>
+          <span className="text-gray-400 font-bold uppercase tracking-[0.15em] md:tracking-[0.2em] text-[9px] md:text-[10px] group-hover:text-white transition-colors">{contact.label}</span>
         </a>
       ))}
     </div>

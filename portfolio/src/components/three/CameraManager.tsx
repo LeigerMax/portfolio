@@ -10,10 +10,17 @@ import { OrbitControls } from "@react-three/drei";
 gsap.registerPlugin(ScrollTrigger);
 
 export function CameraManager({ isUIVisible }: { isUIVisible: boolean }) {
-  const { camera } = useThree();
+  const { camera, size } = useThree();
   const timeline = useRef<gsap.core.Timeline>(null!);
+  const isMobile = size.width < 768;
 
   useEffect(() => {
+    // Ajustement du FOV pour le mode portrait
+    if (camera instanceof THREE.PerspectiveCamera) {
+      camera.fov = isMobile ? 55 : 40;
+      camera.updateProjectionMatrix();
+    }
+
     // Si on passe en mode libre (isUIVisible === false), on tue le scroll
     if (!isUIVisible) {
       if (timeline.current) {
@@ -24,7 +31,36 @@ export function CameraManager({ isUIVisible }: { isUIVisible: boolean }) {
     }
 
     // Sinon, on initialise le parcours guidé (ScrollTrigger)
-    const cameraPoints = {
+    const cameraPoints = isMobile ? {
+      hero: {
+        pos: new THREE.Vector3(0, 11, 22),
+        lookAt: new THREE.Vector3(0, 3, -2)
+      },
+      whoami: {
+        pos: new THREE.Vector3(-3, 8, 14),
+        lookAt: new THREE.Vector3(-14.8, 6.5, 8)
+      },
+      parcours: {
+        pos: new THREE.Vector3(-2, 8, 7),
+        lookAt: new THREE.Vector3(-14.8, 6, -5)
+      },
+      skills: {
+        pos: new THREE.Vector3(-2, 9, 8),
+        lookAt: new THREE.Vector3(-11.5, 7, -10)
+      },
+      certs: {
+        pos: new THREE.Vector3(0, 10, 4),
+        lookAt: new THREE.Vector3(0, 6, -14.8)
+      },
+      projects: {
+        pos: new THREE.Vector3(0, 4, 3),
+        lookAt: new THREE.Vector3(0, 2.95, -2.8)
+      },
+      contact: {
+        pos: new THREE.Vector3(3, 7, 10),
+        lookAt: new THREE.Vector3(2.2, 2.3, 0.6)
+      },
+    } : {
       hero: {
         pos: new THREE.Vector3(0, 9, 16),
         lookAt: new THREE.Vector3(0, 3, -2)
@@ -113,9 +149,9 @@ export function CameraManager({ isUIVisible }: { isUIVisible: boolean }) {
     return () => {
       if (timeline.current) timeline.current.kill();
     };
-  }, [camera, isUIVisible]);
+  }, [camera, isUIVisible, isMobile]);
 
-  return !isUIVisible ? (
+  return (!isUIVisible) ? (
     <OrbitControls
       enableDamping
       dampingFactor={0.05}
