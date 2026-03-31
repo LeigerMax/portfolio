@@ -77,6 +77,7 @@ export function ProjectModal({ project, onClose, onNext, onPrev }: ProjectModalP
               <button
                 onClick={(e) => { e.stopPropagation(); onPrev(); }}
                 className="p-6 bg-white/[0.02] hover:bg-white/[0.05] text-white/20 hover:text-white rounded-full transition-all border border-white/10 cursor-pointer group backdrop-blur-xl"
+                aria-label="Projet précédent"
                 title="Projet Précédent"
               >
                 <span className="text-4xl translate-x-[-2px] group-hover:-translate-x-1 transition-transform block">←</span>
@@ -87,6 +88,7 @@ export function ProjectModal({ project, onClose, onNext, onPrev }: ProjectModalP
               <button
                 onClick={(e) => { e.stopPropagation(); onNext(); }}
                 className="p-6 bg-white/[0.02] hover:bg-white/[0.05] text-white/20 hover:text-white rounded-full transition-all border border-white/10 cursor-pointer group backdrop-blur-xl"
+                aria-label="Projet suivant"
                 title="Projet Suivant"
               >
                 <span className="text-4xl translate-x-[2px] group-hover:translate-x-1 transition-transform block">→</span>
@@ -98,6 +100,7 @@ export function ProjectModal({ project, onClose, onNext, onPrev }: ProjectModalP
               <div className="absolute top-6 right-6 md:top-8 md:right-8 z-50">
                 <button
                   onClick={onClose}
+                  aria-label="Fermer la modal"
                   className="p-3 bg-white/[0.05] backdrop-blur-md rounded-xl text-white/50 hover:text-white hover:bg-white/[0.1] transition-all cursor-pointer border border-white/10"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -120,7 +123,7 @@ export function ProjectModal({ project, onClose, onNext, onPrev }: ProjectModalP
                     <>
                       <img
                         src={project.images[currentImageIndex]}
-                        alt={`${project.title} ${currentImageIndex + 1}`}
+                        alt={`Capture d'écran détaillée ${currentImageIndex + 1} du projet ${project.title}`}
                         className="w-full h-full object-contain"
                       />
                       
@@ -128,12 +131,14 @@ export function ProjectModal({ project, onClose, onNext, onPrev }: ProjectModalP
                         <>
                           <button
                             onClick={(e) => { e.stopPropagation(); prevImage(); }}
+                            aria-label="Image précédente"
                             className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 p-4 md:p-5 bg-black/40 hover:bg-black/60 text-white/50 hover:text-white rounded-full transition-all border border-white/10 cursor-pointer backdrop-blur-md"
                           >
                             ←
                           </button>
                           <button
                             onClick={(e) => { e.stopPropagation(); nextImage(); }}
+                            aria-label="Image suivante"
                             className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 p-4 md:p-5 bg-black/40 hover:bg-black/60 text-white/50 hover:text-white rounded-full transition-all border border-white/10 cursor-pointer backdrop-blur-md"
                           >
                             →
@@ -242,12 +247,14 @@ export function ProjectModal({ project, onClose, onNext, onPrev }: ProjectModalP
             <div className="md:hidden fixed bottom-10 left-1/2 -translate-x-1/2 flex gap-8 z-[230] pointer-events-auto">
               <button
                 onClick={(e) => { e.stopPropagation(); onPrev(); }}
+                aria-label="Projet précédent"
                 className="w-14 h-14 flex items-center justify-center bg-black/90 backdrop-blur-2xl border border-white/20 text-white text-2xl font-light rounded-full shadow-2xl active:scale-90 transition-all"
               >
                 ←
               </button>
               <button
                 onClick={(e) => { e.stopPropagation(); onNext(); }}
+                aria-label="Projet suivant"
                 className="w-14 h-14 flex items-center justify-center bg-black/90 backdrop-blur-2xl border border-white/20 text-white text-2xl font-light rounded-full shadow-2xl active:scale-90 transition-all"
               >
                 →

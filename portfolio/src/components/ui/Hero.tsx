@@ -15,6 +15,7 @@ export function Hero() {
 
           <h1 className="text-3xl sm:text-5xl md:text-5xl lg:text-6xl font-light text-white mb-6 uppercase tracking-widest leading-tight">
             Maxime Allemeersch
+            <span className="sr-only"> — Software Engineer & Expert Web Fullstack</span>
           </h1>
 
           <p className="text-base md:text-xl text-amber-200/60 font-light uppercase tracking-[0.25em] mb-8">

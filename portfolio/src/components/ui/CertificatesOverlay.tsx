@@ -100,6 +100,7 @@ export function CertificatesOverlay({ visible, isInline = false }: { visible: bo
           <button
             onClick={() => setPage((p: number) => Math.max(0, p - 1))}
             disabled={page === 0}
+            aria-label="Certification page précédente"
             className="px-6 py-2.5 bg-white/[0.12] border border-white/30 text-white/90 rounded-lg hover:bg-white/[0.2] hover:text-white transition-all disabled:opacity-30 cursor-pointer text-sm font-bold"
           >
             ←
@@ -110,6 +111,7 @@ export function CertificatesOverlay({ visible, isInline = false }: { visible: bo
               <button
                 key={i}
                 onClick={() => setPage(i)}
+                aria-label={`Aller à la page de certification ${i + 1}`}
                 className={`w-10 h-10 rounded-lg text-xs font-bold transition-all cursor-pointer border ${i === page
                   ? "bg-white border-white text-black"
                   : "bg-white/[0.02] border-white/10 text-white/30 hover:text-white hover:border-white/20"
@@ -123,6 +125,7 @@ export function CertificatesOverlay({ visible, isInline = false }: { visible: bo
           <button
             onClick={() => setPage((p: number) => Math.min(totalPages - 1, p + 1))}
             disabled={page === totalPages - 1}
+            aria-label="Certification page suivante"
             className="px-4 md:px-6 py-2 md:py-2.5 bg-white/[0.12] border border-white/30 text-white/90 rounded-lg hover:bg-white/[0.2] hover:text-white transition-all disabled:opacity-30 cursor-pointer text-xs md:text-sm font-bold"
           >
             →

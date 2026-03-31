@@ -12,6 +12,7 @@ function MobileHero() {
     <div className="flex flex-col items-center justify-center p-6 text-center pt-24 pb-6">
       <h1 className="text-3xl font-black text-white mb-3 uppercase tracking-tighter italic leading-[0.9]">
         Maxime <br /> Allemeersch
+        <span className="sr-only"> — Software Engineer & Expert Web Fullstack</span>
       </h1>
       <p className="text-xs font-mono uppercase tracking-[0.2em] text-amber-200/60 mb-6 border-y border-white/5 py-2 w-full max-w-[200px]">
         Software Engineer
@@ -19,6 +20,13 @@ function MobileHero() {
       <p className="text-sm text-gray-400 max-w-[280px] mx-auto leading-relaxed font-medium">
         Développeur passionné et polyvalent, spécialisé dans la création de solutions complètes.
       </p>
+
+      {/* Suggestion Desktop */}
+      <div className="mt-8">
+        <p className="text-[9px] md:text-[10px] font-mono text-white/20 uppercase tracking-[0.3em] inline-flex items-center gap-2 bg-white/[0.03] px-4 py-2 rounded-full border border-white/5">
+          <span className="animate-pulse">●</span> Expérience optimale sur ordinateur
+        </p>
+      </div>
 
       <div className="mt-10 flex flex-col items-center gap-2">
         <div className="w-[1px] h-12 bg-gradient-to-b from-white/20 to-transparent" />

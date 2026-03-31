@@ -75,7 +75,7 @@ export function ProjectGrid({ isMinimal = false }: { isMinimal?: boolean }) {
                 <div className={`relative h-48 md:h-56 bg-[#151515] overflow-hidden ${isMinimal ? "rounded-2xl mb-12" : "border-b card-border"}`}>
                   <img
                     src={project.images[0]}
-                    alt={project.title}
+                    alt={`Aperçu de l'interface du projet ${project.title} - Réalisé avec ${project.technologies.slice(0, 3).join(", ")}`}
                     className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-700 grayscale-[20%] group-hover:grayscale-0"
                     onError={(e) => {
                       (e.target as HTMLImageElement).style.display = 'none';
@@ -113,6 +113,7 @@ export function ProjectGrid({ isMinimal = false }: { isMinimal?: boolean }) {
                         // Correction de l'index : startIndex correspond au premier projet de la page
                         setSelectedIndex(startIndex + idx);
                       }}
+                      aria-label={`Voir les détails détaillés du projet ${project.title}`}
                       className="group/btn relative w-full py-4 bg-white/[0.02] border border-white/10 text-white text-[10px] md:text-xs font-black uppercase tracking-[0.25em] rounded-xl hover:bg-white hover:text-black transition-all duration-300 cursor-pointer overflow-hidden active:scale-95"
                     >
                       <span className="relative z-10 flex items-center justify-center gap-2">
