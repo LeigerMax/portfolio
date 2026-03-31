@@ -1,14 +1,20 @@
 // Types for the retro portfolio
 
 export interface Project {
-  id: string;
+  id?: string;
   title: string;
   description: string;
   technologies: string[];
-  image: string;
+  images: string[];
+  video?: string;
   liveUrl?: string;
   githubUrl?: string;
-  featured: boolean;
+  featured?: boolean;
+  links?: {
+    github?: string;
+    live?: string;
+    pdf?: string;
+  };
 }
 
 export interface Experience {
