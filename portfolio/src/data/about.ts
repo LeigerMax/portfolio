@@ -1,7 +1,7 @@
 export const aboutData = {
   bio: {
     title: "Qui suis-je ?",
-    content: "Développeur logiciel junior passionné et polyvalent, formé en software engineering. À l'aise en front-end comme en back-end, j'ai acquis de solides compétences en Java, Python, JavaScript, TypeScript et PHP. Curieux et rapide à apprendre, je sais m'adapter à de nouvelles technologies et je possède un bon sens de l'organisation et une aisance relationnelle, ce qui me permet de travailler efficacement en équipe."
+    content: "Développeur polyvalent (Web, Mobile, Logiciel), diplômé d'un Bachelier IT complété par un cursus en ingénierie logicielle. Reconnu pour ma capacité d'analyse et de résolution de problèmes complexes, je m'adapte rapidement aux nouvelles stacks grâce à un apprentissage continu. Aussi efficace en autonomie qu'en équipe, j'allie gestion de projet, rigueur et aisance en vulgarisation technique pour concevoir et déployer des applications robustes de bout en bout."
   },
   experience: [
     {
