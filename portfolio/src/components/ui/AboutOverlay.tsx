@@ -24,7 +24,28 @@ interface EducationItem {
  * "Qui suis-je" overlay — displayed next to the photo frame.
  * Shows only the bio text, aligned to the right of the frame.
  */
-export function WhoAmIOverlay({ visible }: { visible: boolean }) {
+export function WhoAmIOverlay({ visible, isInline = false }: { visible: boolean; isInline?: boolean }) {
+  const content = (
+    <div className={`w-full pointer-events-auto relative overflow-hidden ${isInline ? "px-2" : "max-w-2xl bg-[#0d0d0d]/80 backdrop-blur-md border card-border rounded-xl p-8 md:p-12 workspace-shadow"}`}>
+      {/* Subtle texture overlay - only on non-inline */}
+      {!isInline && <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-paper-grain" />}
+
+      <div className="relative z-10">
+        <div className="flex items-center gap-4 mb-6">
+          <div className="w-10 h-[1px] bg-white/20" />
+          <h2 className="text-xl md:text-3xl font-light text-white tracking-[0.2em] uppercase">
+            Profil
+          </h2>
+        </div>
+        <p className="text-base text-gray-400 leading-relaxed font-medium">
+          {aboutData.bio.content}
+        </p>
+      </div>
+    </div>
+  );
+
+  if (isInline) return content;
+
   return (
     <AnimatePresence>
       {visible && (
@@ -33,31 +54,90 @@ export function WhoAmIOverlay({ visible }: { visible: boolean }) {
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: 40 }}
           transition={{ duration: 0.6 }}
-          className="fixed top-0 right-0 w-1/2 h-full pointer-events-none flex items-center justify-start p-12 z-50"
+          className="fixed top-0 right-0 w-full md:w-1/2 h-full pointer-events-none flex items-center justify-start p-6 md:p-12 z-50"
         >
-          <div className="max-w-2xl w-full pointer-events-auto bg-[#0d0d0d]/80 backdrop-blur-md border card-border rounded-xl p-12 workspace-shadow relative overflow-hidden">
-            {/* Subtle texture overlay */}
-            <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-paper-grain" />
-
-            <div className="relative z-10">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-10 h-[1px] bg-white/20" />
-                <h2 className="text-3xl font-light text-white tracking-[0.2em] uppercase">
-                  Profil
-                </h2>
-              </div>
-              <p className="text-base text-gray-400 leading-relaxed font-medium">
-                {aboutData.bio.content}
-              </p>
-            </div>
-          </div>
+          {content}
         </motion.div>
       )}
     </AnimatePresence>
   );
 }
 
-export function ParcoursOverlay({ visible }: { visible: boolean }) {
+export function ParcoursOverlay({ visible, isInline = false }: { visible: boolean; isInline?: boolean }) {
+  const content = (
+    <div className={`w-full pointer-events-auto relative overflow-hidden ${isInline ? "px-2" : "max-w-7xl bg-[#0d0d0d]/80 backdrop-blur-md border card-border rounded-xl p-6 md:p-12 workspace-shadow max-h-[90vh] md:max-h-[80vh] overflow-y-auto custom-scrollbar"}`}>
+      {/* Subtle texture overlay - only on non-inline */}
+      {!isInline && <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-paper-grain" />}
+
+      <div className="relative z-10">
+        <div className="flex items-center justify-center gap-6 mb-10 md:mb-20">
+          <div className="w-8 md:w-16 h-[1px] bg-white/10" />
+          <h2 className="text-xl md:text-4xl font-light text-white tracking-[0.25em] uppercase text-center">
+            Parcours
+          </h2>
+          <div className="w-8 md:w-16 h-[1px] bg-white/10" />
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
+          {/* EXPERIENCE */}
+          <section>
+            <div className="flex items-center gap-4 mb-12">
+              <div className="p-2.5 bg-white/[0.03] border card-border rounded-lg text-gray-400">
+                <Briefcase size={22} />
+              </div>
+              <h3 className="text-xs font-black text-gray-400 uppercase tracking-[0.25em]">
+                Expérience Professionnelle
+              </h3>
+            </div>
+
+            <div className="space-y-12">
+              {aboutData.experience.map((exp: ExperienceItem, i: number) => (
+                <div key={i} className="relative pl-10 border-l border-white/10 group">
+                  <div className="absolute left-[-5px] top-2 w-2.5 h-2.5 bg-black border border-white/20 rounded-full group-hover:border-amber-200/50 transition-colors" />
+                  <div className="text-sm font-bold text-white mb-1.5 group-hover:text-amber-100/90 transition-colors">{exp.role || exp.title}</div>
+                  <div className="text-[10px] md:text-xs font-black uppercase tracking-widest text-amber-200/40 mb-4">{exp.company} • {exp.period}</div>
+                  <p className="text-xs md:text-sm text-gray-400 mb-5 leading-relaxed font-medium">{exp.description}</p>
+                  {exp.tags && (
+                    <div className="flex flex-wrap gap-2.5">
+                      {exp.tags.map((tag: string) => (
+                        <span key={tag} className="text-[9px] px-2 py-0.5 bg-white/[0.03] border border-white/[0.1] rounded-sm uppercase text-gray-600 font-black tracking-widest">{tag}</span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* EDUCATION */}
+          <section>
+            <div className="flex items-center gap-4 mb-12">
+              <div className="p-2.5 bg-white/[0.03] border card-border rounded-lg text-gray-400">
+                <GraduationCap size={22} />
+              </div>
+              <h3 className="text-xs font-black text-gray-400 uppercase tracking-[0.25em]">
+                Formation & Études
+              </h3>
+            </div>
+
+            <div className="space-y-12">
+              {aboutData.education.map((edu: EducationItem, i: number) => (
+                <div key={i} className="relative pl-10 border-l border-white/10 group">
+                  <div className="absolute left-[-5px] top-2 w-2.5 h-2.5 bg-black border border-white/20 rounded-full group-hover:border-emerald-200/50 transition-colors" />
+                  <h4 className="font-bold text-white text-sm mb-1.5 group-hover:text-emerald-100/90 transition-colors">{edu.degree}</h4>
+                  <div className="text-[10px] md:text-xs font-black uppercase tracking-widest text-emerald-200/40 mb-4">{edu.school} • {edu.period}</div>
+                  <p className="text-xs md:text-sm text-gray-400 leading-relaxed font-medium">{edu.description}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  );
+
+  if (isInline) return content;
+
   return (
     <AnimatePresence>
       {visible && (
@@ -66,77 +146,9 @@ export function ParcoursOverlay({ visible }: { visible: boolean }) {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 30 }}
           transition={{ duration: 0.6 }}
-          className="fixed top-0 left-0 w-full h-full pointer-events-none flex items-center justify-center p-10 z-[60]"
+          className="fixed top-0 left-0 w-full h-full pointer-events-none flex items-center justify-center p-4 md:p-10 z-[60]"
         >
-          <div className="max-w-7xl w-full pointer-events-auto bg-[#0d0d0d]/80 backdrop-blur-md border card-border rounded-xl p-12 workspace-shadow overflow-y-auto max-h-[80vh] relative custom-scrollbar">
-            {/* Subtle texture overlay */}
-            <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-paper-grain" />
-
-            <div className="relative z-10">
-              <div className="flex items-center justify-center gap-6 mb-20">
-                <div className="w-16 h-[1px] bg-white/10" />
-                <h2 className="text-4xl font-light text-white tracking-[0.25em] uppercase">
-                  Parcours
-                </h2>
-                <div className="w-16 h-[1px] bg-white/10" />
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
-                {/* EXPERIENCE */}
-                <section>
-                  <div className="flex items-center gap-4 mb-12">
-                    <div className="p-2.5 bg-white/[0.03] border card-border rounded-lg text-gray-400">
-                      <Briefcase size={22} />
-                    </div>
-                    <h3 className="text-xs font-black text-gray-400 uppercase tracking-[0.25em]">
-                      Expérience Professionnelle
-                    </h3>
-                  </div>
-
-                  <div className="space-y-12">
-                    {aboutData.experience.map((exp: ExperienceItem, i: number) => (
-                      <div key={i} className="relative pl-10 border-l border-white/10 group">
-                        <div className="absolute left-[-5px] top-2 w-2.5 h-2.5 bg-[#0d0d0d] border border-white/20 rounded-full group-hover:border-amber-200/50 transition-colors" />
-                        <div className="text-sm font-bold text-white mb-1.5 group-hover:text-amber-100/90 transition-colors">{exp.role || exp.title}</div>
-                        <div className="text-xs font-black uppercase tracking-widest text-amber-200/40 mb-4">{exp.company} • {exp.period}</div>
-                        <p className="text-sm text-gray-500 mb-5 leading-relaxed font-medium">{exp.description}</p>
-                        {exp.tags && (
-                          <div className="flex flex-wrap gap-2.5">
-                            {exp.tags.map((tag: string) => (
-                              <span key={tag} className="text-[9px] px-2 py-0.5 bg-white/[0.03] border border-white/[0.1] rounded-sm uppercase text-gray-600 font-black tracking-widest">{tag}</span>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                </section>
-
-                {/* EDUCATION */}
-                <section>
-                  <div className="flex items-center gap-4 mb-12">
-                    <div className="p-2.5 bg-white/[0.03] border card-border rounded-lg text-gray-400">
-                      <GraduationCap size={22} />
-                    </div>
-                    <h3 className="text-xs font-black text-gray-400 uppercase tracking-[0.25em]">
-                      Formation & Études
-                    </h3>
-                  </div>
-
-                  <div className="space-y-12">
-                    {aboutData.education.map((edu: EducationItem, i: number) => (
-                      <div key={i} className="relative pl-10 border-l border-white/10 group">
-                        <div className="absolute left-[-5px] top-2 w-2.5 h-2.5 bg-[#0d0d0d] border border-white/20 rounded-full group-hover:border-emerald-200/50 transition-colors" />
-                        <h4 className="font-bold text-white text-sm mb-1.5 group-hover:text-emerald-100/90 transition-colors">{edu.degree}</h4>
-                        <div className="text-xs font-black uppercase tracking-widest text-emerald-200/40 mb-4">{edu.school} • {edu.period}</div>
-                        <p className="text-sm text-gray-500 leading-relaxed font-medium">{edu.description}</p>
-                      </div>
-                    ))}
-                  </div>
-                </section>
-              </div>
-            </div>
-          </div>
+          {content}
         </motion.div>
       )}
     </AnimatePresence>

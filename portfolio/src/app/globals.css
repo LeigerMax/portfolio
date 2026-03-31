@@ -33,6 +33,16 @@ main {
   min-height: 400vh;
 }
 
+/* Fix pour les hauteurs sur mobile (dvh = dynamic viewport height) */
+.h-screen-fallback {
+  height: 100vh;
+  height: 100dvh;
+}
+
+section {
+  scroll-snap-align: center;
+}
+
 /* Texture de papier subtile */
 .bg-paper-grain {
   background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
