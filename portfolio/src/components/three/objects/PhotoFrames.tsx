@@ -3,14 +3,14 @@
 import { Box, Plane, useTexture } from "@react-three/drei";
 import * as THREE from "three";
 
-export default function PhotoFrames({ 
-  position = [0, 0, 0], 
-  rotation = [0, 0, 0] 
-}: { 
-  position?: [number, number, number], 
-  rotation?: [number, number, number] 
+export default function PhotoFrames({
+  position = [0, 0, 0],
+  rotation = [0, 0, 0]
+}: {
+  position?: [number, number, number],
+  rotation?: [number, number, number]
 } = {}) {
-  const picture1 = useTexture("/picture/picture1.jpg");
+  const picture1 = useTexture("/picture/picture1.png");
   const picture2 = useTexture("/picture/picture2.jpg");
   const picture3 = useTexture("/picture/picture3.jpg");
 
