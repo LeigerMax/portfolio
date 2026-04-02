@@ -1,11 +1,104 @@
-"use client";
-
-import { useState } from "react";
+import { useState, memo } from "react";
 import { projects } from "@/data/projects";
 import { ProjectModal } from "./ProjectModal";
 import { Project } from "@/types";
 import { motion, AnimatePresence } from "framer-motion";
 import { createPortal } from "react-dom";
+
+const ProjectCard = memo(({ 
+  project, 
+  isMinimal, 
+  startIndex, 
+  idx, 
+  currentPage, 
+  onSelect,
+  onNext,
+  onPrev
+}: { 
+  project: Project, 
+  isMinimal: boolean, 
+  startIndex: number, 
+  idx: number, 
+  currentPage: number,
+  onSelect: (index: number) => void,
+  onNext: () => void,
+  onPrev: () => void
+}) => {
+  return (
+    <motion.div
+      key={project.id || `${currentPage}-${idx}`}
+      initial={isMinimal ? { opacity: 0, x: 20 } : {}}
+      animate={isMinimal ? { opacity: 1, x: 0 } : {}}
+      exit={isMinimal ? { opacity: 0, x: -20 } : {}}
+      transition={{ duration: 0.4 }}
+      drag={isMinimal ? "x" : false}
+      dragConstraints={{ left: 0, right: 0 }}
+      onDragEnd={(e, { offset }) => {
+        const sweep = offset.x;
+        if (sweep < -50) onNext();
+        else if (sweep > 50) onPrev();
+      }}
+      className={`group overflow-hidden transition-all duration-500 flex flex-col relative touch-none ${isMinimal ? "bg-white/[0.03] border border-white/10 rounded-[2rem] p-4 md:p-8 cursor-grab active:cursor-grabbing" : "bg-[#0d0d0d]/80 backdrop-blur-md border card-border rounded-xl workspace-shadow"}`}
+    >
+      {/* Subtle texture overlay */}
+      <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-paper-grain" />
+
+      {/* Image du projet / Spacing mb-12 for mobile */}
+      <div className={`relative h-48 md:h-56 bg-[#151515] overflow-hidden ${isMinimal ? "rounded-2xl mb-12" : "border-b card-border"}`}>
+        <img
+          src={project.images[0]}
+          alt={`Aperçu de l'interface du projet ${project.title} - Réalisé avec ${project.technologies.slice(0, 3).join(", ")}`}
+          className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-700 grayscale-[20%] group-hover:grayscale-0"
+          onError={(e) => {
+            (e.target as HTMLImageElement).style.display = 'none';
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d0d]/80 via-transparent to-transparent opacity-60" />
+      </div>
+
+      {/* Contenu - More padding for mobile */}
+      <div className={`${isMinimal ? "p-4 pb-8" : "p-6 md:p-10"} flex flex-col flex-1 relative z-10`}>
+        {/* Titre */}
+        <h3 className="text-xl font-bold text-white tracking-tight mb-5 group-hover:text-amber-200/80 transition-colors">
+          {project.title}
+        </h3>
+
+        {/* Technos */}
+        <div className="flex flex-wrap gap-2.5 mb-8">
+          {project.technologies.map((t: string) => (
+            <span key={t} className="text-[10px] uppercase font-black tracking-[0.2em] text-gray-400 bg-white/[0.05] border border-white/[0.1] px-3 py-1 rounded-sm">
+              {t}
+            </span>
+          ))}
+        </div>
+
+        {/* Description courte */}
+        <p className="text-sm text-gray-400 leading-relaxed line-clamp-3 mb-10 flex-1 font-medium">
+          {project.description}
+        </p>
+
+        {/* Bouton Détails - Fixé par wrapper focusable */}
+        <div className="mt-auto pointer-events-auto">
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onSelect(startIndex + idx);
+            }}
+            aria-label={`Voir les détails détaillés du projet ${project.title}`}
+            className="group/btn relative w-full py-4 bg-white/[0.02] border border-white/10 text-white text-[10px] md:text-xs font-black uppercase tracking-[0.25em] rounded-xl hover:bg-white hover:text-black transition-all duration-300 cursor-pointer overflow-hidden active:scale-95"
+          >
+            <span className="relative z-10 flex items-center justify-center gap-2">
+              Détails du projet
+              <span className="group-hover/btn:translate-x-1 transition-transform">→</span>
+            </span>
+          </button>
+        </div>
+      </div>
+    </motion.div>
+  );
+});
+
+ProjectCard.displayName = "ProjectCard";
 
 export function ProjectGrid({ isMinimal = false }: { isMinimal?: boolean }) {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
@@ -53,77 +146,17 @@ export function ProjectGrid({ isMinimal = false }: { isMinimal?: boolean }) {
         <div className={`grid grid-cols-1 md:grid-cols-3 ${isMinimal ? "gap-0" : "gap-12"}`}>
           <AnimatePresence mode="wait">
             {currentProjects.map((project, idx) => (
-              <motion.div
+              <ProjectCard 
                 key={project.id || `${currentPage}-${idx}`}
-                initial={isMinimal ? { opacity: 0, x: 20 } : {}}
-                animate={isMinimal ? { opacity: 1, x: 0 } : {}}
-                exit={isMinimal ? { opacity: 0, x: -20 } : {}}
-                transition={{ duration: 0.4 }}
-                drag={isMinimal ? "x" : false}
-                dragConstraints={{ left: 0, right: 0 }}
-                onDragEnd={(e, { offset, velocity }) => {
-                  const sweep = offset.x;
-                  if (sweep < -50) goToNext();
-                  else if (sweep > 50) goToPrev();
-                }}
-                className={`group overflow-hidden transition-all duration-500 flex flex-col relative touch-none ${isMinimal ? "bg-white/[0.03] border border-white/10 rounded-[2rem] p-4 md:p-8 cursor-grab active:cursor-grabbing" : "bg-[#0d0d0d]/80 backdrop-blur-md border card-border rounded-xl workspace-shadow"}`}
-              >
-                {/* Subtle texture overlay */}
-                <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-paper-grain" />
-
-                {/* Image du projet / Spacing mb-12 for mobile */}
-                <div className={`relative h-48 md:h-56 bg-[#151515] overflow-hidden ${isMinimal ? "rounded-2xl mb-12" : "border-b card-border"}`}>
-                  <img
-                    src={project.images[0]}
-                    alt={`Aperçu de l'interface du projet ${project.title} - Réalisé avec ${project.technologies.slice(0, 3).join(", ")}`}
-                    className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-700 grayscale-[20%] group-hover:grayscale-0"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).style.display = 'none';
-                    }}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d0d]/80 via-transparent to-transparent opacity-60" />
-                </div>
-
-                {/* Contenu - More padding for mobile */}
-                <div className={`${isMinimal ? "p-4 pb-8" : "p-6 md:p-10"} flex flex-col flex-1 relative z-10`}>
-                  {/* Titre */}
-                  <h3 className="text-xl font-bold text-white tracking-tight mb-5 group-hover:text-amber-200/80 transition-colors">
-                    {project.title}
-                  </h3>
-
-                  {/* Technos */}
-                  <div className="flex flex-wrap gap-2.5 mb-8">
-                    {project.technologies.map((t: string) => (
-                      <span key={t} className="text-[10px] uppercase font-black tracking-[0.2em] text-gray-400 bg-white/[0.05] border border-white/[0.1] px-3 py-1 rounded-sm">
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Description courte */}
-                  <p className="text-sm text-gray-400 leading-relaxed line-clamp-3 mb-10 flex-1 font-medium">
-                    {project.description}
-                  </p>
-
-                  {/* Bouton Détails - Fixé par wrapper focusable */}
-                  <div className="mt-auto pointer-events-auto">
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        // Correction de l'index : startIndex correspond au premier projet de la page
-                        setSelectedIndex(startIndex + idx);
-                      }}
-                      aria-label={`Voir les détails détaillés du projet ${project.title}`}
-                      className="group/btn relative w-full py-4 bg-white/[0.02] border border-white/10 text-white text-[10px] md:text-xs font-black uppercase tracking-[0.25em] rounded-xl hover:bg-white hover:text-black transition-all duration-300 cursor-pointer overflow-hidden active:scale-95"
-                    >
-                      <span className="relative z-10 flex items-center justify-center gap-2">
-                        Détails du projet
-                        <span className="group-hover/btn:translate-x-1 transition-transform">→</span>
-                      </span>
-                    </button>
-                  </div>
-                </div>
-              </motion.div>
+                project={project}
+                isMinimal={isMinimal}
+                startIndex={startIndex}
+                idx={idx}
+                currentPage={currentPage}
+                onSelect={setSelectedIndex}
+                onNext={goToNext}
+                onPrev={goToPrev}
+              />
             ))}
           </AnimatePresence>
         </div>

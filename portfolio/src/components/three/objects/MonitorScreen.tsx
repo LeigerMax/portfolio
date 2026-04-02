@@ -62,7 +62,7 @@ export default function MonitorScreen({
   position?: [number, number, number],
   rotation?: [number, number, number]
 }) {
-  const baseTex = useTexture("/images/desk.jpg");
+  const baseTex = useTexture("/images/picture/desk.jpg");
   const wallpaperTex = useOSWallpaper(baseTex);
 
   return (
