@@ -16,7 +16,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguage] = useState<Language>('fr');
 
   useEffect(() => {
-    // Récupérer la langue sauvegardée ou détecter la langue du navigateur
+    // Récupérer la langue sauvegardée ou détecter la langue du navigateur au montage (client-side)
     const savedLanguage = localStorage.getItem('portfolio-language') as Language;
     if (savedLanguage && ['fr', 'en'].includes(savedLanguage)) {
       setLanguage(savedLanguage);

@@ -1,6 +1,4 @@
-"use client";
-
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import { Project } from "@/types";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -11,7 +9,7 @@ interface ProjectModalProps {
   onPrev: () => void;
 }
 
-export function ProjectModal({ project, onClose, onNext, onPrev }: ProjectModalProps) {
+export const ProjectModal = memo(({ project, onClose, onNext, onPrev }: ProjectModalProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   // Reset image index when project changes
@@ -265,4 +263,6 @@ export function ProjectModal({ project, onClose, onNext, onPrev }: ProjectModalP
       )}
     </AnimatePresence>
   );
-}
+});
+
+ProjectModal.displayName = "ProjectModal";
