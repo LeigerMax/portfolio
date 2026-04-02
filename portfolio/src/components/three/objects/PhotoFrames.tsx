@@ -10,9 +10,9 @@ export default function PhotoFrames({
   position?: [number, number, number],
   rotation?: [number, number, number]
 } = {}) {
-  const picture1 = useTexture("/picture/picture1.png");
-  const picture2 = useTexture("/picture/picture2.jpg");
-  const picture3 = useTexture("/picture/picture3.jpg");
+  const picture1 = useTexture("/images/picture/picture1.png");
+  const picture2 = useTexture("/images/picture/picture2.jpg");
+  const picture3 = useTexture("/images/picture/picture3.jpg");
 
   return (
     <group position={position} rotation={rotation}>

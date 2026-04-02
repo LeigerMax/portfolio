@@ -7,7 +7,7 @@ export function ContactButtons() {
     { icon: <Linkedin size={20} />, label: "LinkedIn", href: "https://www.linkedin.com/in/maxime-allemeersch/" },
     { icon: <Github size={20} />, label: "GitHub", href: "https://github.com/LeigerMax#" },
     { icon: <Mail size={20} />, label: "Email", href: "mailto:max.allemeersch@gmail.com" },
-    { icon: <FileText size={20} />, label: "CV", href: "/docs/CV_2026-04-01_Maxime_Allemeersch_DFrB.pdf" },
+    { icon: <FileText size={20} />, label: "CV", href: "/docs/CV_Maxime_Allemeersch_DFrB.pdf" },
   ];
 
   return (

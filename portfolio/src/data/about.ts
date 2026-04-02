@@ -8,20 +8,26 @@ export const aboutData = {
       role: "Stagiaire IT",
       company: "Zone NAGE",
       period: "févr. 2022 - mai 2022",
-      description: "Webisation du module rapport pompiers et ambulance du logiciel IEmergencyAdministration. Renforcement des compétences en développement web php.",
+      description: "Programmer de nouvelles fonctionnalités en PHP pour faciliter la saisie et le traitement des données critiques par les services de secours lors d'une intervention.",
       tags: ["PHP", "C#"]
     },
     {
-      role: "Étudiant Encodeur",
+      role: "Employé Administratif (Étudiant Encodeur)",
       company: "Solidaris Mutualité",
       period: "juil. 2021 - août 2022",
-      description: "Gestion des remboursements des allocations complémentaires. Faire preuve de professionnalisme et de polyvalence."
+      description: "Traiter et gérer de manière autonome les dossiers de remboursements et les allocations des affiliés. Former et encadrer des nouveaux collaborateurs étudiants sur les missions."
     },
     {
       role: "Bénévole",
       company: "Saint Vincent de Paul",
       period: "juil. 2021 - déc. 2025",
-      description: "Distribution alimentaire aux personnes démunies. Faire preuve de respect et d'empathie à l'égard de la partie aidée."
+      description: "Gestion des distributions alimentaires, démontrant un fort esprit d'équipe, de la fiabilité et une excellente capacité d'écoute"
+    },
+    {
+      role: "Inventoriste & Magasinier étudiant",
+      company: "AGC Glass Europe Moustier",
+      period: "juin 2018 - août 2019",
+      description: "Réceptionner, vérifier et distribuer les équipements et colis aux ouvriers, en optimisant la gestion des stocks et démontrant un fort sens des responsabilités."
     }
   ],
   education: [

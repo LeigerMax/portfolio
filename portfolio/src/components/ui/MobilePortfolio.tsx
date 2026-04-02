@@ -5,7 +5,7 @@ import { SkillsSection } from "./SkillsSection";
 import { CertificatesOverlay } from "./CertificatesOverlay";
 import { ProjectGrid } from "./ProjectGrid";
 import { ContactButtons } from "./ContactButtons";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 function MobileHero() {
   return (

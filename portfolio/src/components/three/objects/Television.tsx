@@ -56,7 +56,7 @@ export default function Television({ position = [14.85, 6, -8], rotation = [0, -
             borderRadius: "10px"
           }}>
             <img
-              src="/images/télé.gif"
+              src="/images/picture/télé.gif"
               alt="TV GIF"
               style={{
                 width: "100%",
