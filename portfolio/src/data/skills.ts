@@ -1,47 +1,47 @@
 export interface SkillCategory {
-  title: string;
+  titleKey: string;
   skills: string[];
   color: string;
 }
 
 export const skillCategories: SkillCategory[] = [
   {
-    title: "Langages",
+    titleKey: "about.skillCategories.programming",
     skills: ["Java", "Python", "JavaScript", "TypeScript", "PHP", "C#", "Haskell"],
     color: "blue"
   },
   {
-    title: "Frameworks & Web",
+    titleKey: "about.skillCategories.frameworks",
     skills: ["React", "Node.js", "Next.js", "Angular", "jQuery", "Flutter", "Tailwind CSS", "HTML", "CSS"],
     color: "green"
   },
   {
-    title: "Bases de données",
+    titleKey: "about.skillCategories.databases",
     skills: ["MySQL", "PostgreSQL"],
     color: "yellow"
   },
   {
-    title: "Outils & Environnements",
+    titleKey: "about.skillCategories.tools",
     skills: ["Git", "GitHub", "Linux", "Docker", "Jira", "Trello", "GitHub Actions", "CI/CD", "Firebase"],
     color: "red"
   },
   {
-    title: "Méthodologies & Systèmes",
+    titleKey: "about.skillCategories.methodologies",
     skills: [
-      "Agile", "Scrum", "SDLC", "Design Patterns", "Architecture Microservices", "MVC", "Tests unitaires", "Refactoring", "Clean Code", 
-      "OOP", "REST API", "Windows Server", "Administration réseau"
+      "Agile", "Scrum", "SDLC", "Design Patterns", "Architecture Microservices", "MVC", "about.skills_data.method_unit_tests", "Refactoring", "Clean Code", 
+      "OOP", "REST API", "Windows Server", "about.skills_data.method_network"
     ],
     color: "purple"
   },
   {
-    title: "Soft Skills",
+    titleKey: "about.skillCategories.soft_skills",
     skills: [
-      "Analyse et résolution de problèmes complexes",
-      "Travail en équipe et solo",
-      "Adaptabilité et apprentissage continu",
-      "Vulgarisation technique",
-      "Gestion de projet et d'équipe",
-      "Formation"
+      "about.skills_data.soft_analysis",
+      "about.skills_data.soft_team",
+      "about.skills_data.soft_adapt",
+      "about.skills_data.soft_popularization",
+      "about.skills_data.soft_management",
+      "about.skills_data.soft_training"
     ],
     color: "cyan"
   }

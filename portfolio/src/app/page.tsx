@@ -8,13 +8,16 @@ import { ContactButtons } from "@/components/ui/ContactButtons";
 import { Hero } from "@/components/ui/Hero";
 import { SkillsSection } from "@/components/ui/SkillsSection";
 import { MobilePortfolio } from "@/components/ui/MobilePortfolio";
+import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
 import { useEffect, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useTranslation } from "react-i18next";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
+  const { t } = useTranslation();
   const [showWhoAmI, setShowWhoAmI] = useState(false);
   const [showParcours, setShowParcours] = useState(false);
   const [showCerts, setShowCerts] = useState(false);
@@ -129,8 +132,11 @@ export default function Home() {
         onClick={() => setIsUIVisible(!isUIVisible)}
         className="fixed bottom-6 left-6 md:bottom-8 md:left-8 z-[100] bg-white/10 backdrop-blur-md border border-white/20 text-white px-4 py-2 md:px-6 md:py-3 rounded-full font-mono text-[10px] md:text-sm uppercase tracking-widest hover:bg-white/20 transition-all pointer-events-auto shadow-2xl"
       >
-        {isUIVisible ? "[V] Mode Libre" : "[V] Retour au Scroll"}
+        {isUIVisible ? t('hero.modeLibre') : t('hero.retourScroll')}
       </button>
+
+      {/* SELECTEUR DE LANGUE */}
+      <LanguageSwitcher />
 
       {isMobile && isUIVisible ? (
         /* UI Mobile - Cadre Unique */
@@ -173,16 +179,16 @@ export default function Home() {
                   <div className="flex items-center gap-4 mb-8">
                     <div className="w-10 h-[1px] bg-white/20" />
                     <h2 className="text-sm font-black text-gray-400 uppercase tracking-[0.3em]">
-                      Contact
+                      {t('nav.contact')}
                     </h2>
                   </div>
                   
                   <h3 className="text-2xl font-light text-white uppercase tracking-[0.15em] mb-6 leading-tight">
-                    Restons en <span className="text-amber-200/60">contact</span>
+                    {t('contact.stayConnected')} <span className="text-amber-200/60">{t('contact.contactSpan')}</span>
                   </h3>
                   
                   <p className="text-gray-500 text-sm mb-10 leading-relaxed font-medium">
-                    Prêt à discuter de votre prochain projet ou d'une opportunité ?
+                    {t('contact.readyToDiscuss')}
                   </p>
                   
                   <ContactButtons />

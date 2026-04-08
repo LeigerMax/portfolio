@@ -1,53 +1,49 @@
 export const aboutData = {
-  bio: {
-    title: "Qui suis-je ?",
-    content: "Développeur polyvalent (Web, Mobile, Logiciel), diplômé d'un Bachelier IT complété par un cursus en ingénierie logicielle. Reconnu pour ma capacité d'analyse et de résolution de problèmes complexes, je m'adapte rapidement aux nouvelles stacks grâce à un apprentissage continu. Aussi efficace en autonomie qu'en équipe, j'allie gestion de projet, rigueur et aisance en vulgarisation technique pour concevoir et déployer des applications robustes de bout en bout."
-  },
   experience: [
     {
-      role: "Stagiaire IT",
+      roleKey: "about.exp_nage_role",
       company: "Zone NAGE",
-      period: "févr. 2022 - mai 2022",
-      description: "Programmer de nouvelles fonctionnalités en PHP pour faciliter la saisie et le traitement des données critiques par les services de secours lors d'une intervention.",
+      periodKey: "about.exp_nage_period",
+      descriptionKey: "about.exp_nage_desc",
       tags: ["PHP", "C#"]
     },
     {
-      role: "Employé Administratif (Étudiant Encodeur)",
+      roleKey: "about.exp_solidaris_role",
       company: "Solidaris Mutualité",
-      period: "juil. 2021 - août 2022",
-      description: "Traiter et gérer de manière autonome les dossiers de remboursements et les allocations des affiliés. Former et encadrer des nouveaux collaborateurs étudiants sur les missions."
+      periodKey: "about.exp_solidaris_period",
+      descriptionKey: "about.exp_solidaris_desc"
     },
     {
-      role: "Bénévole",
+      roleKey: "about.exp_svdp_role",
       company: "Saint Vincent de Paul",
-      period: "juil. 2021 - déc. 2025",
-      description: "Gestion des distributions alimentaires, démontrant un fort esprit d'équipe, de la fiabilité et une excellente capacité d'écoute"
+      periodKey: "about.exp_svdp_period",
+      descriptionKey: "about.exp_svdp_desc"
     },
     {
-      role: "Inventoriste & Magasinier étudiant",
+      roleKey: "about.exp_agc_role",
       company: "AGC Glass Europe Moustier",
-      period: "juin 2018 - août 2019",
-      description: "Réceptionner, vérifier et distribuer les équipements et colis aux ouvriers, en optimisant la gestion des stocks et démontrant un fort sens des responsabilités."
+      periodKey: "about.exp_agc_period",
+      descriptionKey: "about.exp_agc_desc"
     }
   ],
   education: [
     {
-      degree: "Master 60 en Sciences Informatiques",
+      degreeKey: "about.edu_m60_degree",
       school: "Université de Namur",
-      period: "oct. 2024 - août 2025",
-      description: "Programme avancé en développement logiciel et ingénierierie logicielle, renforçant les compétences en architecture, sécurité et technologies émergentes."
+      periodKey: "about.edu_m60_period",
+      descriptionKey: "about.edu_m60_desc"
     },
     {
-      degree: "Master 2 (M2), Software Engineer",
+      degreeKey: "about.edu_m2_degree",
       school: "Université de Namur",
-      period: "sept. 2022 - sept. 2024",
-      description: "Compétences approfondies en conception, développement, maintenance et évolution de logiciels. Cours sur méthodes de développement logiciel, architectures logicielles, gestion de projet, sécurité et projets pratiques."
+      periodKey: "about.edu_m2_period",
+      descriptionKey: "about.edu_m2_desc"
     },
     {
-      degree: "Bachelor of Technology - Technologie informatique",
+      degreeKey: "about.edu_btech_degree",
       school: "Haute École de Namur-Liège-Luxembourg (Hénallux)",
-      period: "sept. 2018 - juin 2022",
-      description: "Formation couvrant programmation, administration réseau et systèmes, conception de sites web, bases de données, sécurité, virtualisation et projets pratiques."
+      periodKey: "about.edu_btech_period",
+      descriptionKey: "about.edu_btech_desc"
     }
   ]
 };

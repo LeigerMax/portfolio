@@ -3,7 +3,7 @@
 export interface Project {
   id?: string;
   title: string;
-  description: string;
+  descriptionKey: string;
   technologies: string[];
   images: string[];
   video?: string;
