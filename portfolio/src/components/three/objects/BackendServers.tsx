@@ -5,6 +5,7 @@ import { useMemo, useRef, useState, useEffect } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import gsap from "gsap";
+import { useTranslation } from "react-i18next";
 import ClickIndicator from "./ClickIndicator";
 
 export default function BackendServers({
@@ -14,6 +15,7 @@ export default function BackendServers({
   position?: [number, number, number],
   rotation?: [number, number, number]
 } = {}) {
+  const { t } = useTranslation();
   const [status, setStatus] = useState<"normal" | "rebooting" | "rebooted">("normal");
   const ledCount = 20;
 
@@ -129,7 +131,7 @@ export default function BackendServers({
           fontSize={0.12}
           color={status === "rebooting" ? "red" : status === "rebooted" ? "#a855f7" : "#ffffff"}
         >
-          {status === "rebooting" ? "SYSTEM REBOOT..." : status === "rebooted" ? "SYSTEM ONLINE" : "SERVER [BACKEND]"}
+          {status === "rebooting" ? t("three.system_reboot") : status === "rebooted" ? t("three.system_online") : t("three.server_backend")}
         </Text>
       </group>
     </group>

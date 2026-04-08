@@ -2,6 +2,7 @@
 
 import { Box, Sphere, Cylinder, Text } from "@react-three/drei";
 import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import * as THREE from "three";
 import { certifications } from "@/data/certs";
 
@@ -47,6 +48,7 @@ export default function CertsBoard({
   position?: [number, number, number], 
   rotation?: [number, number, number] 
 } = {}) {
+  const { t } = useTranslation();
   const paperTextures = useCertificateTextures();
 
   const variations = useMemo(() => [
@@ -81,13 +83,13 @@ export default function CertsBoard({
             </Sphere>
 
             <Text position={[0, v.h * 0.25, 0.03]} fontSize={0.18} color="#111" maxWidth={v.w * 0.85} textAlign="center">
-              {cert.title}
+              {t(cert.titleKey)}
             </Text>
             <Text position={[0, v.h * 0.05, 0.03]} fontSize={0.13} color="#444" maxWidth={v.w * 0.85} textAlign="center">
               {cert.issuer}
             </Text>
             <Text position={[0, -v.h * 0.15, 0.03]} fontSize={0.11} color="#666" maxWidth={v.w * 0.85} textAlign="center">
-              {cert.description}
+              {t(cert.descriptionKey)}
             </Text>
 
             {/* Sceau / Badge symbolique */}
