@@ -135,6 +135,11 @@
     },
     "count": "certificats"
   },
+  "three": {
+    "server_backend": "SERVEUR [BACKEND]",
+    "system_reboot": "REDÉMARRAGE...",
+    "system_online": "SYSTÈME EN LIGNE"
+  },
   "certs_data": {
     "do180_date": "avril 2021",
     "do180_desc": "Formation approfondie sur les conteneurs et l'orchestration avec Kubernetes.",

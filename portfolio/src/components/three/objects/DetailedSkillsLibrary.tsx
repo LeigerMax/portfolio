@@ -2,6 +2,7 @@
 
 import { Box, Sphere, Cylinder } from '@react-three/drei';
 import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const WOOD_COLOR = "#a06f3c";
 const SHELF_DEPTH = 1.5;
@@ -20,17 +21,18 @@ const DetailedSkillsLibrary = ({
   position?: [number, number, number], 
   rotation?: [number, number, number] 
 } = {}) => {
+  const { t } = useTranslation();
 
   const woodMaterial = useMemo(() => (
     <meshStandardMaterial color={WOOD_COLOR} metalness={0.1} roughness={0.7} />
   ), []);
 
   const skillData = [
-    { label: "LANGUAGES", color: "#4895ef", y: 11, items: 10 },
-    { label: "FRAMEWORKS", color: "#4cc9f0", y: 8.5, items: 12 },
-    { label: "DATABASES", color: "#f72585", y: 6, items: 6 },
-    { label: "TOOLS", color: "#7209b7", y: 3.5, items: 9 },
-    { label: "SYSTEMS", color: "#3a0ca3", y: 1, items: 8 },
+    { label: t("about.skillCategories.programming").toUpperCase(), color: "#4895ef", y: 11, items: 10 },
+    { label: t("about.skillCategories.frameworks").toUpperCase(), color: "#4cc9f0", y: 8.5, items: 12 },
+    { label: t("about.skillCategories.databases").toUpperCase(), color: "#f72585", y: 6, items: 6 },
+    { label: t("about.skillCategories.tools").toUpperCase(), color: "#7209b7", y: 3.5, items: 9 },
+    { label: t("about.skillCategories.systems").toUpperCase(), color: "#3a0ca3", y: 1, items: 8 },
   ];
 
   return (

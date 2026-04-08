@@ -135,6 +135,11 @@
     },
     "count": "certificates"
   },
+  "three": {
+    "server_backend": "SERVER [BACKEND]",
+    "system_reboot": "SYSTEM REBOOT...",
+    "system_online": "SYSTEM ONLINE"
+  },
   "certs_data": {
     "do180_date": "April 2021",
     "do180_desc": "In-depth training on containers and orchestration with Kubernetes.",
