@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import "./globals.css";
-import { LanguageProvider } from "@/hooks/useLanguage";
+import { I18nProvider } from "@/components/I18nProvider";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://maxleiger.dev"),
@@ -119,9 +119,9 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <LanguageProvider>
+        <I18nProvider>
           {children}
-        </LanguageProvider>
+        </I18nProvider>
       </body>
     </html>
   );

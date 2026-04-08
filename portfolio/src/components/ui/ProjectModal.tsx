@@ -1,6 +1,7 @@
 import { useState, useEffect, memo } from "react";
 import { Project } from "@/types";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 interface ProjectModalProps {
   project: Project | null;
@@ -10,6 +11,7 @@ interface ProjectModalProps {
 }
 
 export const ProjectModal = memo(({ project, onClose, onNext, onPrev }: ProjectModalProps) => {
+  const { t } = useTranslation();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   // Reset image index when project changes
@@ -75,8 +77,8 @@ export const ProjectModal = memo(({ project, onClose, onNext, onPrev }: ProjectM
               <button
                 onClick={(e) => { e.stopPropagation(); onPrev(); }}
                 className="p-6 bg-white/[0.02] hover:bg-white/[0.05] text-white/20 hover:text-white rounded-full transition-all border border-white/10 cursor-pointer group backdrop-blur-xl"
-                aria-label="Projet précédent"
-                title="Projet Précédent"
+                aria-label={t('projects.prevProject')}
+                title={t('projects.prevProject')}
               >
                 <span className="text-4xl translate-x-[-2px] group-hover:-translate-x-1 transition-transform block">←</span>
               </button>
@@ -86,8 +88,8 @@ export const ProjectModal = memo(({ project, onClose, onNext, onPrev }: ProjectM
               <button
                 onClick={(e) => { e.stopPropagation(); onNext(); }}
                 className="p-6 bg-white/[0.02] hover:bg-white/[0.05] text-white/20 hover:text-white rounded-full transition-all border border-white/10 cursor-pointer group backdrop-blur-xl"
-                aria-label="Projet suivant"
-                title="Projet Suivant"
+                aria-label={t('projects.nextProject')}
+                title={t('projects.nextProject')}
               >
                 <span className="text-4xl translate-x-[2px] group-hover:translate-x-1 transition-transform block">→</span>
               </button>
@@ -98,7 +100,7 @@ export const ProjectModal = memo(({ project, onClose, onNext, onPrev }: ProjectM
               <div className="absolute top-6 right-6 md:top-8 md:right-8 z-50">
                 <button
                   onClick={onClose}
-                  aria-label="Fermer la modal"
+                  aria-label={t('projects.closeModal')}
                   className="p-3 bg-white/[0.05] backdrop-blur-md rounded-xl text-white/50 hover:text-white hover:bg-white/[0.1] transition-all cursor-pointer border border-white/10"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -161,7 +163,7 @@ export const ProjectModal = memo(({ project, onClose, onNext, onPrev }: ProjectM
                   <div className="flex items-center gap-4 mb-4">
                     <div className="w-10 h-[1px] bg-amber-200/20" />
                     <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-amber-200/40">
-                      Détails du Projet
+                      {t('projects.details')}
                     </h4>
                   </div>
                   
@@ -186,11 +188,11 @@ export const ProjectModal = memo(({ project, onClose, onNext, onPrev }: ProjectM
                         <div className="flex items-center gap-3 mb-6">
                           <div className="w-6 h-[1px] bg-white/20" />
                           <h4 className="text-[9px] font-black uppercase tracking-[0.2em] text-white/30">
-                            Description & Architecture
+                            {t('projects.descArch')}
                           </h4>
                         </div>
                         <div className="leading-relaxed text-base whitespace-pre-line font-medium border-l border-white/10 pl-6 md:pl-8">
-                          {project.description}
+                          {t(project.descriptionKey)}
                         </div>
                       </section>
                     </div>
@@ -200,7 +202,7 @@ export const ProjectModal = memo(({ project, onClose, onNext, onPrev }: ProjectM
                         <div className="flex items-center gap-3 mb-6">
                           <div className="w-6 h-[1px] bg-white/20" />
                           <h4 className="text-[9px] font-black uppercase tracking-[0.2em] text-white/30">
-                            Accessibilité
+                            {t('projects.accessibility')}
                           </h4>
                         </div>
                         <div className="flex flex-col gap-4">
@@ -211,7 +213,7 @@ export const ProjectModal = memo(({ project, onClose, onNext, onPrev }: ProjectM
                               rel="noopener noreferrer"
                               className="group flex items-center justify-between px-8 py-5 bg-white text-black font-black uppercase tracking-[0.1em] text-[10px] md:text-xs rounded-xl hover:bg-amber-100 transition-all shadow-xl"
                             >
-                              <span>Live Demo</span>
+                              <span>{t('projects.liveDemo')}</span>
                               <span className="text-xl group-hover:translate-x-1 transition-transform">→</span>
                             </a>
                           )}
@@ -223,12 +225,12 @@ export const ProjectModal = memo(({ project, onClose, onNext, onPrev }: ProjectM
                                 rel="noopener noreferrer"
                                 className="group flex items-center justify-between px-8 py-5 bg-white/[0.02] text-white border border-white/10 font-black uppercase tracking-[0.1em] text-[10px] md:text-xs rounded-xl hover:bg-white/[0.05] transition-all"
                               >
-                                <span>Repository</span>
+                                <span>{t('projects.repository')}</span>
                                 <span className="text-xl group-hover:translate-x-1 transition-transform">↗</span>
                               </a>
                             ) : (
                               <div className="flex items-center justify-between px-8 py-5 bg-white/[0.01] text-white/20 border border-white/5 font-black uppercase tracking-[0.1em] text-[10px] md:text-xs rounded-xl cursor-not-allowed">
-                                <span>Repository Privé</span>
+                                <span>{t('projects.privateRepo')}</span>
                                 <span className="text-lg opacity-20">🔒</span>
                               </div>
                             )

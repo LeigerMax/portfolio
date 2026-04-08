@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Certification, certifications, ExtraCertification, extraCertifications } from "@/data/certs";
+import { certifications, extraCertifications } from "@/data/certs";
 import { Award, BookOpen, Gamepad2, GraduationCap, Server } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const ITEMS_PER_PAGE = 4;
 const EXTRA_ITEMS_PER_PAGE = 4;
@@ -30,6 +31,7 @@ function getIssuerAccent(issuer: string) {
 }
 
 export function CertificatesOverlay({ visible, isInline = false }: { visible: boolean; isInline?: boolean }) {
+  const { t } = useTranslation();
   const [page, setPage] = useState(0);
   const [extraPage, setExtraPage] = useState(0);
 
@@ -53,19 +55,19 @@ export function CertificatesOverlay({ visible, isInline = false }: { visible: bo
           <div className="flex items-center gap-4 mb-2">
             {!isInline && <div className="w-8 md:w-10 h-[1px] bg-white/20" />}
             <h2 className="text-xl md:text-3xl font-light text-white tracking-[0.2em] uppercase">
-              Certifications
+              {t('certificates.title')}
             </h2>
           </div>
         </div>
         {!isInline && (
           <div className="text-xs text-white/30 font-mono uppercase tracking-widest bg-white/[0.03] px-4 py-1.5 rounded-full border border-white/[0.05]">
-            {certifications.length} certifats
+            {certifications.length} {t('certificates.count')}
           </div>
         )}
       </div>
 
       <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 mb-8 md:mb-12 ">
-        {current.map((cert: Certification, i: number) => (
+        {current.map((cert, i: number) => (
           <div
             key={page * ITEMS_PER_PAGE + i}
             className={`group relative bg-white/[0.01] border border-white/5 rounded-lg p-6 md:p-8 hover:bg-white/[0.03] transition-all duration-300`}
@@ -76,19 +78,19 @@ export function CertificatesOverlay({ visible, isInline = false }: { visible: bo
               </div>
               <div className="flex-1 min-w-0">
                 <h3 className="text-white font-bold text-sm md:text-base leading-tight mb-2 md:mb-3 pr-20 md:pr-24">
-                  {cert.title}
+                  {t(cert.titleKey)}
                 </h3>
                 <div className={`text-xs font-black uppercase tracking-widest ${getIssuerAccent(cert.issuer)} opacity-80 mb-4`}>
                   {cert.issuer}
                 </div>
                 <p className="text-gray-400 text-xs md:text-sm leading-relaxed line-clamp-2 md:line-clamp-none font-medium">
-                  {cert.description}
+                  {t(cert.descriptionKey)}
                 </p>
               </div>
             </div>
             {/* Date badge */}
             <div className="absolute top-6 right-6 md:top-8 md:right-8 text-[10px] md:text-xs font-mono text-white/20 uppercase tracking-tighter">
-              {cert.date}
+              {t(cert.dateKey)}
             </div>
           </div>
         ))}
@@ -141,7 +143,7 @@ export function CertificatesOverlay({ visible, isInline = false }: { visible: bo
               <BookOpen size={18} className="text-gray-400 hover:text-amber-200/60 transition-colors" />
             </div>
             <h3 className="text-[10px] md:text-sm font-black text-gray-400 uppercase tracking-[0.2em] md:tracking-[0.3em]">
-              Archives & Études
+              {t('about.edu_stud')}
             </h3>
           </div>
 
@@ -170,7 +172,7 @@ export function CertificatesOverlay({ visible, isInline = false }: { visible: bo
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-4 py-2">
-          {currentExtra.map((extra: ExtraCertification, i: number) => (
+          {currentExtra.map((extra, i: number) => (
             <div
               key={extraPage * EXTRA_ITEMS_PER_PAGE + i}
               className="bg-white/[0.01] border border-white/5 rounded-lg p-6 hover:bg-white/[0.03] hover:border-white/20 transition-all group flex flex-col justify-center min-h-[90px]"
@@ -180,7 +182,7 @@ export function CertificatesOverlay({ visible, isInline = false }: { visible: bo
                 <span className="text-[10px] text-white/10 font-mono tracking-tighter">{extra.date}</span>
               </div>
               <h4 className="text-gray-300 text-sm font-medium leading-snug group-hover:text-amber-50 transition-colors">
-                {extra.title}
+                {extra.titleKey.includes('.') ? t(extra.titleKey) : extra.titleKey}
               </h4>
             </div>
           ))}

@@ -1,96 +1,96 @@
 export interface Certification {
-  title: string;
+  titleKey: string;
   issuer: string;
-  date: string;
-  description: string;
+  dateKey: string;
+  descriptionKey: string;
 }
 
 export const certifications: Certification[] = [
   {
-    title: "Red Hat OpenShift I: Containers & Kubernetes (DO180)",
+    titleKey: "Red Hat OpenShift I: Containers & Kubernetes (DO180)",
     issuer: "Red Hat",
-    date: "avril 2021",
-    description: "Formation approfondie sur les conteneurs et l'orchestration avec Kubernetes."
+    dateKey: "certs_data.do180_date",
+    descriptionKey: "certs_data.do180_desc"
   },
   {
-    title: "Unity Essentials Pathway",
+    titleKey: "Unity Essentials Pathway",
     issuer: "Unity Technologies",
-    date: "mars 2025",
-    description: "Parcours complet pour les créateurs débutants avec Unity et la création de contenu en temps réel."
+    dateKey: "certs_data.unity_date",
+    descriptionKey: "certs_data.unity_desc"
   },
   {
-    title: "Initiation aux feuilles de style en cascade (CSS)",
+    titleKey: "certs_data.css_title",
     issuer: "Technofutur TIC",
-    date: "avril 2019",
-    description: "Formation complète sur les bases du CSS et les techniques de mise en page web moderne."
+    dateKey: "certs_data.css_date",
+    descriptionKey: "certs_data.css_desc"
   },
   {
-    title: "Initiation au langage HTML 5",
+    titleKey: "certs_data.html_title",
     issuer: "Technofutur TIC",
-    date: "janvier 2019",
-    description: "Formation aux fondamentaux du HTML5 et aux nouvelles fonctionnalités du web moderne."
+    dateKey: "certs_data.html_date",
+    descriptionKey: "certs_data.html_desc"
   }
 ];
 
 export interface ExtraCertification {
-  title: string;
+  titleKey: string;
   issuer: string;
   date: string;
 }
 
 export const extraCertifications: ExtraCertification[] = [
   {
-    title: "Aidez les utilisateurs à trouver votre entreprise en ligne",
+    titleKey: "certs_data.google_title",
     issuer: "Skillshop Google",
     date: "2024"
   },
   {
-    title: "Créez votre site web avec HTML5 et CSS3",
+    titleKey: "certs_data.oc_html_title",
     issuer: "OpenClassrooms",
     date: "25 août 2015"
   },
   {
-    title: "Apprenez à programmer en Java",
+    titleKey: "certs_data.oc_java_title",
     issuer: "OpenClassrooms",
     date: "24 mars 2020"
   },
   {
-    title: "Installez votre environnement de développement Java avec Eclipse",
+    titleKey: "certs_data.oc_eclipse_title",
     issuer: "OpenClassrooms",
     date: "5 avril 2020"
   },
   {
-    title: "Programmez vos premiers montages avec Arduino",
+    titleKey: "certs_data.oc_arduino_title",
     issuer: "OpenClassrooms",
     date: "30 avril 2020"
   },
   {
-    title: "Analysez et gérez des risques SI",
+    titleKey: "certs_data.oc_risks_title",
     issuer: "OpenClassrooms",
     date: "9 mai 2020"
   },
   {
-    title: "Gérez votre projet informatique facilement",
+    titleKey: "certs_data.oc_manage_title",
     issuer: "OpenClassrooms",
     date: "25 février 2021"
   },
   {
-    title: "Introduction à jQuery",
+    titleKey: "Introduction à jQuery",
     issuer: "OpenClassrooms",
     date: "17 mars 2022"
   },
   {
-    title: "Débutez avec Angular",
+    titleKey: "certs_data.oc_angular_title",
     issuer: "OpenClassrooms",
     date: "17 novembre 2025"
   },
   {
-    title: "Créez une application Java avec Spring Boot",
+    titleKey: "certs_data.oc_spring_title",
     issuer: "OpenClassrooms",
     date: "15 novembre 2025"
   },
   {
-    title: "Communiquez avec un serveur HTTP grâce à Angular",
+    titleKey: "certs_data.oc_http_title",
     issuer: "OpenClassrooms",
     date: "18 novembre 2025"
   }

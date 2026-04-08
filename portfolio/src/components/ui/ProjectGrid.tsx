@@ -4,6 +4,7 @@ import { ProjectModal } from "./ProjectModal";
 import { Project } from "@/types";
 import { motion, AnimatePresence } from "framer-motion";
 import { createPortal } from "react-dom";
+import { useTranslation } from "react-i18next";
 
 const ProjectCard = memo(({ 
   project, 
@@ -24,6 +25,7 @@ const ProjectCard = memo(({
   onNext: () => void,
   onPrev: () => void
 }) => {
+  const { t } = useTranslation();
   return (
     <motion.div
       key={project.id || `${currentPage}-${idx}`}
@@ -74,7 +76,7 @@ const ProjectCard = memo(({
 
         {/* Description courte */}
         <p className="text-sm text-gray-400 leading-relaxed line-clamp-3 mb-10 flex-1 font-medium">
-          {project.description}
+          {t(project.descriptionKey)}
         </p>
 
         {/* Bouton Détails - Fixé par wrapper focusable */}
@@ -88,7 +90,7 @@ const ProjectCard = memo(({
             className="group/btn relative w-full py-4 bg-white/[0.02] border border-white/10 text-white text-[10px] md:text-xs font-black uppercase tracking-[0.25em] rounded-xl hover:bg-white hover:text-black transition-all duration-300 cursor-pointer overflow-hidden active:scale-95"
           >
             <span className="relative z-10 flex items-center justify-center gap-2">
-              Détails du projet
+              {t('projects.details')}
               <span className="group-hover/btn:translate-x-1 transition-transform">→</span>
             </span>
           </button>
@@ -101,6 +103,7 @@ const ProjectCard = memo(({
 ProjectCard.displayName = "ProjectCard";
 
 export function ProjectGrid({ isMinimal = false }: { isMinimal?: boolean }) {
+  const { t } = useTranslation();
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const projectsPerPage = isMinimal ? 1 : 3; 
@@ -136,7 +139,7 @@ export function ProjectGrid({ isMinimal = false }: { isMinimal?: boolean }) {
         <div className="mb-10 md:mb-16 flex items-center gap-4">
           <div className="w-8 md:w-12 h-[1px] bg-white/20" />
           <h2 className="text-xl md:text-3xl font-light text-white tracking-[0.2em] uppercase">
-            Projets Sélectionnés
+            {t('projects.selected')}
           </h2>
         </div>
       )}
