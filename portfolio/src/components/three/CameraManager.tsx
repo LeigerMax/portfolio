@@ -17,6 +17,7 @@ export function CameraManager({ isUIVisible }: { isUIVisible: boolean }) {
   useEffect(() => {
     // Ajustement du FOV pour le mode portrait
     if (camera instanceof THREE.PerspectiveCamera) {
+      // eslint-disable-next-line react-hooks/immutability
       camera.fov = isMobile ? 55 : 40;
       camera.updateProjectionMatrix();
     }

@@ -1,14 +1,14 @@
 "use client";
 
 import { Box, Sphere, Cylinder, Text } from "@react-three/drei";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import * as THREE from "three";
 import { certifications } from "@/data/certs";
 
 /** Génère des textures de papier variées pour les certificats */
 export function useCertificateTextures() {
-  return useMemo(() => {
+  const [textures] = useState(() => {
     const createPaper = (color: string, grainDensity = 0.1) => {
       const canvas = document.createElement('canvas');
       canvas.width = 256;
@@ -38,7 +38,8 @@ export function useCertificateTextures() {
       createPaper('#fdfcf0', 0.08), // Crème / Ivoire
       createPaper('#f5f5f5', 0.1),  // Gris très clair
     ];
-  }, []);
+  });
+  return textures;
 }
 
 export default function CertsBoard({ 
@@ -83,14 +84,16 @@ export default function CertsBoard({
             </Sphere>
 
             <Text position={[0, v.h * 0.25, 0.03]} fontSize={0.18} color="#111" maxWidth={v.w * 0.85} textAlign="center">
-              {t(cert.titleKey)}
+              {cert.titleKey.startsWith('certs_data.') ? t(cert.titleKey) : cert.titleKey}
             </Text>
             <Text position={[0, v.h * 0.05, 0.03]} fontSize={0.13} color="#444" maxWidth={v.w * 0.85} textAlign="center">
               {cert.issuer}
             </Text>
-            <Text position={[0, -v.h * 0.15, 0.03]} fontSize={0.11} color="#666" maxWidth={v.w * 0.85} textAlign="center">
-              {t(cert.descriptionKey)}
-            </Text>
+            {cert.descriptionKey && (
+              <Text position={[0, -v.h * 0.15, 0.03]} fontSize={0.11} color="#666" maxWidth={v.w * 0.85} textAlign="center">
+                {cert.descriptionKey.startsWith('certs_data.') ? t(cert.descriptionKey) : cert.descriptionKey}
+              </Text>
+            )}
 
             {/* Sceau / Badge symbolique */}
             <Cylinder args={[0.25, 0.25, 0.02]} position={[v.w / 2 - 0.6, -v.h / 2 + 0.6, 0.03]} rotation={[Math.PI / 2, 0, 0]}>

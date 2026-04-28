@@ -1,7 +1,6 @@
 "use client";
 
 import { Box, Cylinder } from "@react-three/drei";
-import * as THREE from "three";
 
 export default function Chair({ position = [0, 0, 2.5], rotation = [0, Math.PI, 0] }: { position?: [number, number, number], rotation?: [number, number, number] } = {}) {
   return (

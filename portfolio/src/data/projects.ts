@@ -2,6 +2,14 @@ import { Project } from "@/types";
 
 export const projects: Project[] = [
   {
+    title: "Noobzap",
+    featured: true,
+    descriptionKey: "projects_data.noobzap_desc",
+    technologies: ["Next.js", "React", "Tailwind CSS", "Vercel", "AI Integration", "Supabase "],
+    images: ["/images/projects/noobzap1.png"],
+    links: { github: "https://github.com/LeigerMax/NoobZap/", live: "#" }
+  },
+  {
     title: "Love4You",
     featured: true,
     descriptionKey: "projects_data.love4you_desc",
