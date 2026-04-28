@@ -1,7 +1,7 @@
 "use client";
 
 import { Cylinder, Torus, Points, PointMaterial } from "@react-three/drei";
-import { useRef, useMemo } from "react";
+import { useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import gsap from "gsap";
@@ -19,7 +19,7 @@ export default function CoffeeCup({
   const particleCount = 20; // Augmenté pour plus de fumée
 
   // Initialisation des particules de fumée
-  const positions = useMemo(() => {
+  const [positions] = useState(() => {
     const pos = new Float32Array(particleCount * 3);
     for (let i = 0; i < particleCount; i++) {
       pos[i * 3] = (Math.random() - 0.5) * 0.15;
@@ -27,7 +27,7 @@ export default function CoffeeCup({
       pos[i * 3 + 2] = (Math.random() - 0.5) * 0.15;
     }
     return pos;
-  }, [particleCount]);
+  });
 
   useFrame((state, delta) => {
     if (!pointsRef.current) return;

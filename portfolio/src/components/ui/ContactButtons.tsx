@@ -1,11 +1,12 @@
 "use client";
 
-import { Mail, Linkedin, Github, FileText } from "lucide-react";
+import { Mail, Linkedin, Github, FileText, Award } from "lucide-react";
 
 export function ContactButtons() {
   const contacts = [
     { icon: <Linkedin size={20} />, label: "LinkedIn", href: "https://www.linkedin.com/in/maxime-allemeersch/" },
     { icon: <Github size={20} />, label: "GitHub", href: "https://github.com/LeigerMax#" },
+    { icon: <Award size={20} />, label: "Credly", href: "https://www.credly.com/users/maxime-allemeersch" },
     { icon: <Mail size={20} />, label: "Email", href: "mailto:max.allemeersch@gmail.com" },
     { icon: <FileText size={20} />, label: "CV", href: "/docs/CV_Maxime_Allemeersch_DFrB.pdf" },
   ];

@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { I18nProvider } from "@/components/I18nProvider";
 
+const inter = Inter({ subsets: ["latin"], display: "swap" });
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://maxleiger.dev"),
+  metadataBase: new URL("https://maxime-allemeersch.vercel.app"),
   title: "Maxime Allemeersch | Software Engineer & Expert Web Fullstack",
   description: "Découvrez le portfolio de Maxime Allemeersch, Software Engineer spécialisé en React, Next.js et Flutter. Créateur d'expériences numériques innovantes et performantes.",
   keywords: ["Software Engineer", "Développeur Fullstack", "React", "Next.js", "Flutter", "TypeScript", "Portfolio", "Maxime Allemeersch", "LeigerMax", "Web Development"],
@@ -12,12 +15,16 @@ export const metadata: Metadata = {
   creator: "Maxime Allemeersch",
   publisher: "Maxime Allemeersch",
   alternates: {
-    canonical: "/",
+    canonical: "https://maxime-allemeersch.vercel.app",
+    languages: {
+      "fr-FR": "https://maxime-allemeersch.vercel.app",
+      "en-US": "https://maxime-allemeersch.vercel.app",
+    },
   },
   openGraph: {
     title: "Maxime Allemeersch | Software Engineer & Expert Web Fullstack",
     description: "Portfolio expert de Maxime Allemeersch, Software Engineer passionné par les expériences web innovantes.",
-    url: "https://maxleiger.dev",
+    url: "https://maxime-allemeersch.vercel.app",
     siteName: "Maxime Allemeersch Portfolio",
     images: [
       {
@@ -68,7 +75,7 @@ const jsonLd = {
   "@type": "Person",
   "name": "Maxime Allemeersch",
   "jobTitle": "Software Engineer",
-  "url": "https://maxleiger.dev",
+  "url": "https://maxime-allemeersch.vercel.app",
   "sameAs": [
     "https://github.com/LeigerMax",
     "https://www.linkedin.com/in/maxime-allemeersch/"
@@ -95,12 +102,14 @@ export default function RootLayout({
   return (
     <html lang="fr" className="dark scroll-smooth snap-y snap-proximity">
       <head>
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="icon" href="/favicon.png" type="image/png" />
         <link rel="apple-touch-icon" href="/favicon.png" />
         <meta name="msapplication-TileColor" content="#00ffff" />
         <meta name="theme-color" content="#00ffff" />
       </head>
-      <body className="antialiased crt-effect font-mono">
+      <body className={`antialiased crt-effect font-mono ${inter.className}`}>
         <Script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-HMMKGTKC0H"

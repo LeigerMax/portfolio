@@ -2,7 +2,7 @@
 
 import { Box, Html } from "@react-three/drei";
 import { useState, useEffect } from "react";
-import ClickIndicator from "./ClickIndicator";
+import Image from "next/image";
 
 export default function Television({ position = [14.85, 6, -8], rotation = [0, -Math.PI / 2, 0] }: { position?: [number, number, number], rotation?: [number, number, number] } = {}) {
   const [hovered, setHovered] = useState(false);
@@ -44,6 +44,8 @@ export default function Television({ position = [14.85, 6, -8], rotation = [0, -
           position={[0, 0, 0.026]}
           distanceFactor={6.5}
           pointerEvents="none"
+          aria-label="Écran de télévision affichant une animation"
+          role="img"
         >
           <div style={{
             width: "400px",
@@ -55,13 +57,15 @@ export default function Television({ position = [14.85, 6, -8], rotation = [0, -
             overflow: "hidden",
             borderRadius: "10px"
           }}>
-            <img
+            <Image
               src="/images/picture/télé.gif"
               alt="TV GIF"
+              width={400}
+              height={250}
+              unoptimized
               style={{
                 width: "100%",
                 height: "100%",
-
                 opacity: hovered ? 1 : 0.8,
                 transition: "opacity 0.3s ease"
               }}

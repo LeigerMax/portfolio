@@ -1,7 +1,6 @@
 "use client";
 
 import { Box, Text } from "@react-three/drei";
-import * as THREE from "three";
 
 export interface BookProps {
   width: number;

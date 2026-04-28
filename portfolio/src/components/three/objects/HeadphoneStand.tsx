@@ -1,7 +1,6 @@
 "use client";
 
 import { Box, Cylinder, Sphere } from "@react-three/drei";
-import * as THREE from "three";
 
 export default function HeadphoneStand({ position = [-3.8, 1.275, 0.2], rotation = [0, 0, 0] }: { position?: [number, number, number], rotation?: [number, number, number] } = {}) {
   return (

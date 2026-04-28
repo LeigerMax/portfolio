@@ -1,4 +1,5 @@
 import { useState, useEffect, memo } from "react";
+import Image from "next/image";
 import { Project } from "@/types";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
@@ -14,10 +15,12 @@ export const ProjectModal = memo(({ project, onClose, onNext, onPrev }: ProjectM
   const { t } = useTranslation();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // Reset image index when project changes
-  useEffect(() => {
+  // Reset image index when project changes during render
+  const [prevProjectTitle, setPrevProjectTitle] = useState(project?.title);
+  if (project?.title !== prevProjectTitle) {
+    setPrevProjectTitle(project?.title);
     setCurrentImageIndex(0);
-  }, [project?.title]);
+  }
 
   // Keyboard navigation & Scroll block
   useEffect(() => {
@@ -121,10 +124,12 @@ export const ProjectModal = memo(({ project, onClose, onNext, onPrev }: ProjectM
                     />
                   ) : (
                     <>
-                      <img
+                      <Image
                         src={project.images[currentImageIndex]}
                         alt={`Capture d'écran détaillée ${currentImageIndex + 1} du projet ${project.title}`}
-                        className="w-full h-full object-contain"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 80vw"
+                        className="object-contain"
                       />
                       
                       {project.images.length > 1 && (

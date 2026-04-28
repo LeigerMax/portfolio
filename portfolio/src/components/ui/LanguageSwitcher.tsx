@@ -1,15 +1,22 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { motion } from 'framer-motion';
 
 export function LanguageSwitcher() {
   const { i18n } = useTranslation();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => setMounted(true), 0);
+  }, []);
 
   const toggleLanguage = () => {
     const nextLang = i18n.language === 'fr' ? 'en' : 'fr';
     i18n.changeLanguage(nextLang);
   };
+
+  if (!mounted) return null;
 
   return (
     <div className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-[100] flex gap-2 pointer-events-auto">

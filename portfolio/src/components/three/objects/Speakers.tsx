@@ -28,8 +28,9 @@ export default function Speakers({
     }
   });
 
-  const SpeakerUnit = ({ isLeft }: { isLeft: boolean }) => (
+  const renderSpeakerUnit = (isLeft: boolean) => (
     <group
+      key={isLeft ? "left" : "right"}
       position={[isLeft ? -3.8 : 3.8, 1.275, -0.5]}
       rotation={[0, isLeft ? 0.3 : -0.3, 0]}
       onClick={(e) => {
@@ -88,8 +89,8 @@ export default function Speakers({
 
   return (
     <group position={position} rotation={rotation}>
-      <SpeakerUnit isLeft={true} />
-      <SpeakerUnit isLeft={false} />
+      {renderSpeakerUnit(true)}
+      {renderSpeakerUnit(false)}
     </group>
   );
 }

@@ -1,7 +1,6 @@
 "use client";
 
 import { Box, Plane, useTexture } from "@react-three/drei";
-import * as THREE from "three";
 
 export default function PhotoFrames({
   position = [0, 0, 0],

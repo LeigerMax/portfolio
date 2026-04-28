@@ -1,4 +1,5 @@
 import { useState, memo } from "react";
+import Image from "next/image";
 import { projects } from "@/data/projects";
 import { ProjectModal } from "./ProjectModal";
 import { Project } from "@/types";
@@ -47,15 +48,17 @@ const ProjectCard = memo(({
 
       {/* Image du projet / Spacing mb-12 for mobile */}
       <div className={`relative h-48 md:h-56 bg-[#151515] overflow-hidden ${isMinimal ? "rounded-2xl mb-12" : "border-b card-border"}`}>
-        <img
+        <Image
           src={project.images[0]}
           alt={`Aperçu de l'interface du projet ${project.title} - Réalisé avec ${project.technologies.slice(0, 3).join(", ")}`}
-          className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-700 grayscale-[20%] group-hover:grayscale-0"
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="object-cover opacity-60 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-700 grayscale-[20%] group-hover:grayscale-0"
           onError={(e) => {
             (e.target as HTMLImageElement).style.display = 'none';
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d0d]/80 via-transparent to-transparent opacity-60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d0d]/80 via-transparent to-transparent opacity-60 pointer-events-none" />
       </div>
 
       {/* Contenu - More padding for mobile */}

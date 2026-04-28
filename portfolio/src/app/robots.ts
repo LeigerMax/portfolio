@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: '/_next/',
     },
-    sitemap: 'https://maxleiger.dev/sitemap.xml',
+    sitemap: 'https://maxime-allemeersch.vercel.app/sitemap.xml',
   }
 }

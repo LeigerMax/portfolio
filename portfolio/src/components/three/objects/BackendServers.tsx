@@ -1,12 +1,47 @@
 "use client";
 
 import { Box, Sphere, Text } from "@react-three/drei";
-import { useMemo, useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
-import gsap from "gsap";
 import { useTranslation } from "react-i18next";
 import ClickIndicator from "./ClickIndicator";
+
+interface LedData {
+  pos: [number, number, number];
+  color: string;
+  speed: number;
+}
+
+const Led = ({ led, i, status }: { led: LedData, i: number, status: string }) => {
+  const ref = useRef<THREE.Mesh>(null!);
+  useFrame((state) => {
+    if (!ref.current) return;
+    const material = ref.current.material as THREE.MeshStandardMaterial;
+
+    if (status === "rebooting") {
+      const blink = Math.sin(state.clock.elapsedTime * 20) > 0;
+      material.color.set("#ff0000");
+      material.emissive.set("#ff0000");
+      material.emissiveIntensity = blink ? 2 : 0.2;
+    } else {
+      const blink = Math.sin(state.clock.elapsedTime * led.speed + i) > 0.5;
+      material.color.set(led.color);
+      material.emissive.set(led.color);
+      material.emissiveIntensity = blink ? 1 : 0.1;
+    }
+  });
+
+  return (
+    <Sphere ref={ref} args={[0.04, 8, 8]} position={led.pos}>
+      <meshStandardMaterial
+        color={led.color}
+        emissive={led.color}
+        emissiveIntensity={0.5}
+      />
+    </Sphere>
+  );
+};
 
 export default function BackendServers({
   position = [12, -1, -14],
@@ -20,7 +55,7 @@ export default function BackendServers({
   const ledCount = 20;
 
   // Générer des données pour les LEDs
-  const leds = useMemo(() => {
+  const [leds] = useState(() => {
     const data = [];
     for (let i = 0; i < ledCount; i++) {
       data.push({
@@ -34,7 +69,7 @@ export default function BackendServers({
       });
     }
     return data;
-  }, [ledCount]);
+  });
 
   const handleReboot = () => {
     if (status !== "normal") return;
@@ -44,44 +79,6 @@ export default function BackendServers({
       setStatus("rebooted");
       setTimeout(() => setStatus("normal"), 2000);
     }, 1500);
-  };
-
-  const LedGroup = () => (
-    <group>
-      {leds.map((led, i) => (
-        <Led key={i} led={led} i={i} />
-      ))}
-    </group>
-  );
-
-  const Led = ({ led, i }: { led: any, i: number }) => {
-    const ref = useRef<THREE.Mesh>(null!);
-    useFrame((state) => {
-      if (!ref.current) return;
-      const material = ref.current.material as THREE.MeshStandardMaterial;
-
-      if (status === "rebooting") {
-        const blink = Math.sin(state.clock.elapsedTime * 20) > 0;
-        material.color.set("#ff0000");
-        material.emissive.set("#ff0000");
-        material.emissiveIntensity = blink ? 2 : 0.2;
-      } else {
-        const blink = Math.sin(state.clock.elapsedTime * led.speed + i) > 0.5;
-        material.color.set(led.color);
-        material.emissive.set(led.color);
-        material.emissiveIntensity = blink ? 1 : 0.1;
-      }
-    });
-
-    return (
-      <Sphere ref={ref} args={[0.04, 8, 8]} position={led.pos}>
-        <meshStandardMaterial
-          color={led.color}
-          emissive={led.color}
-          emissiveIntensity={0.5}
-        />
-      </Sphere>
-    );
   };
 
   return (
@@ -119,7 +116,11 @@ export default function BackendServers({
       ))}
 
       {/* LEDs clignotantes */}
-      <LedGroup />
+      <group>
+        {leds.map((led, i) => (
+          <Led key={i} led={led} i={i} status={status} />
+        ))}
+      </group>
 
       {/* Étiquette "SERVER ROOM" avec statut */}
       <group position={[0, 4.2, 1.01]}>

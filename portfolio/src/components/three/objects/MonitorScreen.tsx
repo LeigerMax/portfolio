@@ -16,7 +16,7 @@ export function useOSWallpaper(baseTexture?: THREE.Texture) {
 
     if (baseTexture?.image) {
       // Dessine l'image de fond
-      ctx.drawImage(baseTexture.image as any, 0, 0, 512, 320);
+      ctx.drawImage(baseTexture.image as CanvasImageSource, 0, 0, 512, 320);
       // Filtre sombre pour éviter que l'image soit trop blanche/éblouissante
       ctx.fillStyle = 'rgba(0,0,0,0.1)';
       ctx.fillRect(0, 0, 512, 320);

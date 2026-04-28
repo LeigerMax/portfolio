@@ -1,6 +1,6 @@
 "use client";
 
-import { Cylinder, Sphere, useTexture } from "@react-three/drei";
+import { Cylinder, Sphere } from "@react-three/drei";
 import { useState, useRef, useLayoutEffect, useMemo } from "react";
 import * as THREE from "three";
 import gsap from "gsap";

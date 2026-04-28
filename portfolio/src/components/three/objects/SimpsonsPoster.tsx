@@ -1,4 +1,4 @@
-import { Box, Text, useTexture } from '@react-three/drei';
+import { Box, Text } from '@react-three/drei';
 import { useMemo } from 'react';
 
 // --- CONFIGURATION DU POSTER ---
@@ -55,7 +55,7 @@ const SimpsonsPoster = ({ position = [0, 0, 0] }) => {
                 anchorX="center"
                 anchorY="middle"
             >
-                D'OH!
+                D&apos;OH!
             </Text>
 
             {/* Optionnel : Un petit détail pour simuler un reflet ou une salissure */}

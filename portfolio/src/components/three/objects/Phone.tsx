@@ -15,7 +15,7 @@ export default function Phone({
 } = {}) {
   const ref = useRef<THREE.Group>(null!);
   const [showNotif, setShowNotif] = useState(false);
-  const [notifText, setNotifText] = useState("Merci Maxou pour le travail !");
+  const notifText = "Merci Maxou pour le travail !";
 
   const handleClick = () => {
     if (showNotif) return;

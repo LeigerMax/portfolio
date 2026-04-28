@@ -21,9 +21,9 @@ export function Hero() {
             <span className="sr-only"> — {t('hero.title')} & Expert Web Fullstack</span>
           </h1>
 
-          <p className="text-base md:text-xl text-amber-200/60 font-light uppercase tracking-[0.25em] mb-8">
+          <h2 className="text-base md:text-xl text-amber-200/60 font-light uppercase tracking-[0.25em] mb-8">
             {t('hero.title')}
-          </p>
+          </h2>
 
           <p className="text-sm md:text-lg text-white/50 max-w-xl mx-auto mb-16 leading-relaxed font-medium tracking-wide">
             {t('hero.description')}

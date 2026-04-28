@@ -1,14 +1,13 @@
 "use client";
 
-import { useRef, useMemo } from "react";
+import { useRef, useState, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
 export function Particles({ count = 100 }) {
   const mesh = useRef<THREE.InstancedMesh>(null!);
-  const light = useRef<THREE.Group>(null!);
 
-  const particles = useMemo(() => {
+  const [particles] = useState(() => {
     const temp = [];
     for (let i = 0; i < count; i++) {
       const t = Math.random() * 100;
@@ -20,13 +19,14 @@ export function Particles({ count = 100 }) {
       temp.push({ t, factor, speed, xFactor, yFactor, zFactor, mx: 0, my: 0 });
     }
     return temp;
-  }, [count]);
+  });
 
   const dummy = useMemo(() => new THREE.Object3D(), []);
 
-  useFrame((state) => {
+  useFrame(() => {
     particles.forEach((particle, i) => {
-      let { t, factor, speed, xFactor, yFactor, zFactor } = particle;
+      const { factor, speed, xFactor, yFactor, zFactor } = particle;
+      let { t } = particle;
       t = particle.t += speed / 2;
       const a = Math.cos(t) + Math.sin(t * 1) / 10;
       const b = Math.sin(t) + Math.cos(t * 2) / 10;
